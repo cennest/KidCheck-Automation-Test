@@ -22,21 +22,9 @@ namespace KidCheckTest.DetailModel
                     Password = "cennest";
                     break;
                 case UserRole.Administrator:
-                    /*  UserName = "poulomeecennest";
-                      Password = "cennest";
-                      For production site i.e www.kidcheck.com
-                      */
                     UserName = "KidCheck@cennest.com";
                     Password = "cennest";
                     break;
-                //case UserRole.InvalidUser:
-                //    UserName = "cennesttest@cennest.com";
-                //    Password = "cennest";
-                //    break;
-                //default:
-                //    UserName = "poulomeecennes";
-                //    Password = "cennes";
-                //    break;
             }
 
         }

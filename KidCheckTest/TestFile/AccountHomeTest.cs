@@ -9,11 +9,10 @@ namespace KidCheckTest.TestFile
     [TestClass]
     public class AccountHomeTest : UiTestBase
     {
-        public const int WaitTimeApi = 7000;
         IWebDriver driver = null;
         private LoginDetailsModel _adminLoginDetails;
         private LoginDetailsModel _kidCheckAdminLoginDetails;
-       private AddNewChild _addNewChild;
+        private AddNewChild _addNewChild;
         SignupDetailsModel _newUserDetails;
 
         [TestInitialize]
@@ -37,7 +36,7 @@ namespace KidCheckTest.TestFile
 
         [TestMethod]
         public void AddNewKid()
-        {           
+        {
             var loginPage = new LoginPageModel(driver, BaseUri);
             AccountHomePageModel addNewKid = loginPage.Load()
                 /*.InitiateLogin()*/
@@ -47,16 +46,17 @@ namespace KidCheckTest.TestFile
             IList<IWebElement> row = driver.FindElements(By.XPath("//*[@id='ctl00_ContentMain_dgKids']" + " / tbody/tr[*]"));
             int rowCount = row.Count;
             driver.SwitchTo().Frame(0);
-           addNewKid.FillNewKidDetails(_addNewChild).SubmitNewKid();
+            addNewKid.FillNewKidDetails(_addNewChild).SubmitNewKid();
             IList<IWebElement> rowAfterInsert = driver.FindElements(By.XPath("//*[@id='ctl00_ContentMain_dgKids']" + " / tbody/tr[*]"));
             int rowCountAterInsert = rowAfterInsert.Count;
             bool isKidAdded = false;
-            if(rowCount<rowCountAterInsert)
+            if (rowCount < rowCountAterInsert)
             {
                 isKidAdded = true;
             }
-            Assert.IsTrue(isKidAdded);           
+            Assert.IsTrue(isKidAdded);
         }
+
         [TestMethod]
         public void AccountCreationViaRegistrationAssistant()
         {

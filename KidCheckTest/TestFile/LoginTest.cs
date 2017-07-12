@@ -15,8 +15,6 @@ namespace KidCheckTest
     [TestClass]
     public class LoginTest : UiTestBase
     {
-
-        public const int WaitTimeApi = 7000;
         IWebDriver driver = null;
         private LoginDetailsModel _adminLoginDetails;
         private LoginDetailsModel _kidCheckAdminLoginDetails;
@@ -102,6 +100,7 @@ namespace KidCheckTest
             string UserErrorText = submit.Login_UserErrorPageElement.Text;
             Assert.AreEqual(UserErrorText, "The username you are attempting to use is temporarily disabled because of too many invalid login attempts. You can attempt another login in 11 minutes.\r\nYou can contact KidCheck support at 1-855-543-2432 to have this login unlocked.");
         }
+
         [TestMethod]
         public void CreateNewKidCheckAccountWithEmailIdLogin()
         {
@@ -111,6 +110,7 @@ namespace KidCheckTest
             string homeElementText = homePage.Account_HomeElement.Text;
             Assert.AreEqual(homeElementText, "Home");
         }
+
         [TestMethod]
         public void CreateNewKidCheckAccountWithUsernameLogin()
         {
@@ -120,6 +120,7 @@ namespace KidCheckTest
             string homeElementText = homePage.Account_HomeElement.Text;
             Assert.AreEqual(homeElementText, "Home");
         }
+
         [TestMethod]
         public void CreateNewKidCheckAccountWithrefOrg()
         {

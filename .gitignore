@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/KidCheckTest/v14/.suo
+*/obj/Debug
+/packages
+*/bin/Debug

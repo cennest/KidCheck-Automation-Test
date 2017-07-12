@@ -14,10 +14,7 @@ namespace KidCheckTest.TestFile
     public class UiTestBase
     {
         protected Uri BaseUri;
-        static string driverPath = AppDomain.CurrentDomain.BaseDirectory;     
-        protected string uri = "https://www.kidcheck.com/";
-        protected string localLoginUri = "https://localhost/signin.aspx";
-        protected string localSignupUri = "https://localhost/signup/";
+        static string driverPath = AppDomain.CurrentDomain.BaseDirectory;  
 
         public UiTestBase()
         {
@@ -32,7 +29,7 @@ namespace KidCheckTest.TestFile
                 //driver.Manage().Window.Size = new Size(700, 700);
                 driver.Manage().Window.Size = new Size(1500, 1000);
                 driver.Manage().Window.Position = new Point(0, 0);
-                driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(50));
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(50);
             }
             catch (Exception)
             {
@@ -77,11 +74,11 @@ namespace KidCheckTest.TestFile
             //    return new Uri(localLoginUri);
             //} else if(loginType == "signup")
             //{
-            //    return new Uri(localSignupUri);
+            //    return new Uri(Helper.AppConstant.SignUpURL);
             //}
             //else
             //{
-                return new Uri(localLoginUri);
+            return new Uri(Helper.AppConstant.SignInURL);
             //}
         }
     }

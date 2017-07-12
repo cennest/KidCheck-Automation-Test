@@ -9,7 +9,6 @@ namespace KidCheckTest.TestFile
     [TestClass]
    public class InitialSetupTest : UiTestBase
     {
-        public const int WaitTimeApi = 7000;
         IWebDriver driver = null;
         private LoginDetailsModel _adminLoginDetails;
         private LoginDetailsModel _kidCheckAdminLoginDetails;
@@ -39,7 +38,7 @@ namespace KidCheckTest.TestFile
         public void CreateNewAccountWithCustomerSetupWitEmail()
         {
             var signupPage = new SignupPageModel(driver, BaseUri);
-            driver.Navigate().GoToUrl("https://localhost/signup/");
+            driver.Navigate().GoToUrl(Helper.AppConstant.SignUpURL);
             SignupPageModel siginin = signupPage/*.Load().InitiateSignUp().InitiateKidCheckSignUP()*/.WelcomePage()
                  .FillNewAccountDetailsWithEmail(_signupDetails);
             var userName = _signupDetails.Account_EmailID;
@@ -47,17 +46,19 @@ namespace KidCheckTest.TestFile
             siginin.ContinueToStep2().ContinueUsingSameLogin()
                 .FillChildCareOrgDetails(_childcareOrganizationDetailsModel).ContinueToStep3()
                 .KidcheckProductSelection().ContinueToStep4().Continue();
-            driver.Navigate().GoToUrl("https://localhost/signin.aspx");
+            driver.Navigate().GoToUrl(Helper.AppConstant.SignInURL);
             var loginPage = new LoginPageModel(driver, BaseUri);
             AccountHomePageModel homePage = loginPage/*.InitiateLogin()*/.FillLoginDetail(userName, password).SubmitLogin().ClickIAgree();
             string homeElementText = homePage.Account_HomeElement.Text;
             Assert.AreEqual(homeElementText, "Home");
         }
+
         [TestMethod]
         public void CreateNewAccountWithCustomerSetupWitUser()
         {
             var signupPage = new SignupPageModel(driver, BaseUri);
-            driver.Navigate().GoToUrl("https://localhost/signup/");
+            driver.Navigate().GoToUrl(Helper.AppConstant.SignUpURL);
+
             SignupPageModel siginin = signupPage/*.Load().InitiateSignUp().InitiateKidCheckSignUP()*/.WelcomePage()
                  .FillNewAccountDetailsWithUser(_signupDetails);
             var userName = _signupDetails.Account_UserName;
@@ -65,12 +66,13 @@ namespace KidCheckTest.TestFile
             siginin.ContinueToStep2().ContinueUsingSameLogin()
                 .FillChildCareOrgDetails(_childcareOrganizationDetailsModel).ContinueToStep3()
                 .KidcheckProductSelection().ContinueToStep4().Continue();
-            driver.Navigate().GoToUrl("https://localhost/signin.aspx");
+            driver.Navigate().GoToUrl(Helper.AppConstant.SignInURL);
             var loginPage = new LoginPageModel(driver, BaseUri);
             AccountHomePageModel homePage = loginPage/*.InitiateLogin()*/.FillLoginDetail(userName, password).SubmitLogin().ClickIAgree();
             string homeElementText = homePage.Account_HomeElement.Text;
             Assert.AreEqual(homeElementText, "Home");
         }
+
         [TestMethod]
         public void Login()
         {

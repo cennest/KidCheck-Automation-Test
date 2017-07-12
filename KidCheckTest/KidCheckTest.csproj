@@ -68,6 +68,7 @@
     <Compile Include="DetailModel\SignupDetailsModel.cs" />
     <Compile Include="DetailModel\UserRole.cs" />
     <Compile Include="Helper\ActionHelper.cs" />
+    <Compile Include="Helper\AppConstant.cs" />
     <Compile Include="PageModel\AccountHomePageModel.cs" />
     <Compile Include="PageModel\BasePageModel.cs" />
     <Compile Include="PageModel\HomePageModel.cs" />
