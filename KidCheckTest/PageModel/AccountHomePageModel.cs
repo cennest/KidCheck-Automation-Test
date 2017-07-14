@@ -1,4 +1,5 @@
 ﻿using KidCheckTest.DetailModel;
+using KidCheckTest.Helper;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -28,12 +29,12 @@ namespace KidCheckTest.PageModel
         #endregion
 
         #region AccountHomePage Element
-        public IWebElement MyAccountElement
+        public IWebElement MyAccountTabElement
         {
             get { return ByXPath("//*[@id='MyAccountTab']/span/span/span"); }
         }
 
-        public IWebElement KidsElement
+        public IWebElement KidsTabElement
         {
             get { return ByXPath("//*[@id='KidsTab']/span/span"); }
         }
@@ -70,7 +71,7 @@ namespace KidCheckTest.PageModel
             get { return ByXPath("//*[@id='ctl00_ContentMain_btnAgree_btnRadButton']"); }
         }
 
-        public IWebElement Account_HomeElement
+        public IWebElement HomeTabElement
         {
             get { return ByXPath("//*[@id='homeTab']/span/span"); }
         }
@@ -160,7 +161,7 @@ namespace KidCheckTest.PageModel
         }
         public IWebElement PrimaryGuardian_CellPhoneElement
         {
-            get { return ById("ctl00_ContentMain_ucPrimaryGuardian_tbCellPhone");}
+            get { return ById("ctl00_ContentMain_ucPrimaryGuardian_tbCellPhone"); }
         }
         public IWebElement PrimaryGuardian_CellphoneCarrierElement
         {
@@ -187,20 +188,25 @@ namespace KidCheckTest.PageModel
         #region Methods
         public AccountHomePageModel ClickMyAccount()
         {
-            MyAccountElement.Click();
-            Thread.Sleep(1000);
-            return new AccountHomePageModel(Driver, BaseUri);
-        }       
-        public AccountHomePageModel ClickKids()
-        {
-            KidsElement.Click();
-            Thread.Sleep(1000);
+            MyAccountTabElement.Click();
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             return new AccountHomePageModel(Driver, BaseUri);
         }
+
+        public AccountHomePageModel ClickKids()
+        {
+            KidsTabElement.Click();
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
+            return new AccountHomePageModel(Driver, BaseUri);
+        }
+
         public AccountHomePageModel ClickAddNewKid()
         {
             AddNewChildElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             return new AccountHomePageModel(Driver, BaseUri);
         }
         public AccountHomePageModel FillNewKidDetails(AddNewChild _addNewChild)
@@ -212,51 +218,64 @@ namespace KidCheckTest.PageModel
             Child_MedicalORAllergyElement.SendKeys(_addNewChild.Child_MedicalORAllergy);
             return new AccountHomePageModel(Driver, BaseUri);
         }
+
         public AccountHomePageModel SubmitNewKid()
         {
             Child_SubmitKidElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             return new AccountHomePageModel(Driver, BaseUri);
         }
+
         public AccountHomePageModel ClickIAgree()
         {
             IAgreeElement.Click();
-            Thread.Sleep(1000);
+            Thread.Sleep(AppConstant.SleepTime * 2);
             return new AccountHomePageModel(Driver, BaseUri);
         }
+
         public AccountHomePageModel ClickGuardianTab()
         {
             GuardianTabElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             return new AccountHomePageModel(Driver, BaseUri);
         }
+
         public AccountHomePageModel ClickAddNewGuardian()
         {
             AddNewGuardianElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             return new AccountHomePageModel(Driver, BaseUri);
         }
+
         public AccountHomePageModel ClickCheckin()
         {
             CheckInTabElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             return new AccountHomePageModel(Driver, BaseUri);
         }
+
         public AccountHomePageModel ClickUtitlities()
         {
             UtilitiesElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             return new AccountHomePageModel(Driver, BaseUri);
         }
+
         public AccountHomePageModel ClickRegistrationAssistantStart()
         {
-            RegistrationAssistantStartElement .Click();
-            Thread.Sleep(1000);
+            RegistrationAssistantStartElement.Click();
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             return new AccountHomePageModel(Driver, BaseUri);
         }
+
         public AccountHomePageModel FillRegistrationBasicInfoForNewUser(SignupDetailsModel _newUserDetails)
         {
-            
             regNewUserDetails.Account_FirstName = _newUserDetails.Account_FirstName;
             regNewUserDetails.Account_Lastname = _newUserDetails.Account_Lastname;
             regNewUserDetails.Account_PhoneNumber = _newUserDetails.Account_PhoneNumber;
@@ -271,15 +290,19 @@ namespace KidCheckTest.PageModel
             Registration_HomePhoneElement.SendKeys(regNewUserDetails.Account_PhoneNumber);
             Registration_CellPhoneElement.SendKeys(regNewUserDetails.Account_MobileNumber);
             Registration_EmailIdElement.SendKeys(regNewUserDetails.Account_EmailID);
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             return new AccountHomePageModel(Driver, BaseUri);
         }
+
         public AccountHomePageModel ClickRegNext()
         {
             Registration_NextElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             return new AccountHomePageModel(Driver, BaseUri);
         }
+
         public AccountHomePageModel FillRegistrationInfoForNewUser()
         {
             PrimaryGuardian_FirstnameElement.SendKeys(regNewUserDetails.Account_UserName);
@@ -287,28 +310,37 @@ namespace KidCheckTest.PageModel
             PrimaryGuardian_AddressElement.SendKeys(regNewUserDetails.Account_MailingAddress);
             PrimaryGuardian_CityElement.SendKeys(regNewUserDetails.Account_City);
             PrimaryGuardian_PostalCode.SendKeys(regNewUserDetails.Account_PostalCode);
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             PrimaryGuardian_StateElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             PrimaryGuardian_SelectedStateElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             PrimaryGuardian_CountryElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             PrimaryGuardian_SelectedCountryElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             PrimaryGuardian_CellphoneCarrierElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             PrimaryGuardian_SelectedCellphoneCompanyElement.Click();
+
             PrimaryGuardian_UsernameElement.SendKeys(regNewUserDetails.Account_UserName);
             PrimaryGuardian_PasswordElement.SendKeys(regNewUserDetails.Account_Password);
-            Thread.Sleep(2000);
+
+            Thread.Sleep(AppConstant.SleepTime * 4);
             return new AccountHomePageModel(Driver, BaseUri);
         }
 
         public AccountHomePageModel ClickPrimaryGuardianNext()
         {
             PrimaryGuardian_NextElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             return new AccountHomePageModel(Driver, BaseUri);
         }
 

@@ -38,22 +38,35 @@ namespace KidCheckTest.TestFile
         public void AddNewKid()
         {
             var loginPage = new LoginPageModel(driver, BaseUri);
+
             AccountHomePageModel addNewKid = loginPage.Load()
                 /*.InitiateLogin()*/
                 .FillLoginDetail(_adminLoginDetails.UserName, _adminLoginDetails.Password)
                 .SubmitLogin()
-                .ClickMyAccount().ClickKids().ClickAddNewKid();
+                .ClickMyAccount()
+                .ClickKids()
+                .ClickAddNewKid();
+
             IList<IWebElement> row = driver.FindElements(By.XPath("//*[@id='ctl00_ContentMain_dgKids']" + " / tbody/tr[*]"));
+
             int rowCount = row.Count;
-            driver.SwitchTo().Frame(0);
-            addNewKid.FillNewKidDetails(_addNewChild).SubmitNewKid();
+
+            driver.SwitchTo()
+                .Frame(0);
+
+            addNewKid.FillNewKidDetails(_addNewChild)
+                .SubmitNewKid();
+
             IList<IWebElement> rowAfterInsert = driver.FindElements(By.XPath("//*[@id='ctl00_ContentMain_dgKids']" + " / tbody/tr[*]"));
+
             int rowCountAterInsert = rowAfterInsert.Count;
+
             bool isKidAdded = false;
             if (rowCount < rowCountAterInsert)
             {
                 isKidAdded = true;
             }
+
             Assert.IsTrue(isKidAdded);
         }
 
@@ -61,12 +74,17 @@ namespace KidCheckTest.TestFile
         public void AccountCreationViaRegistrationAssistant()
         {
             var loginPage = new LoginPageModel(driver, BaseUri);
+
             AccountHomePageModel test = loginPage.Load()
                 .FillLoginDetail(_adminLoginDetails.UserName, _adminLoginDetails.Password)
-                .SubmitLogin().ClickCheckin().ClickUtitlities().ClickRegistrationAssistantStart()
-                .FillRegistrationBasicInfoForNewUser(_newUserDetails).ClickRegNext().FillRegistrationInfoForNewUser().ClickPrimaryGuardianNext();
-
-
+                .SubmitLogin()
+                .ClickCheckin()
+                .ClickUtitlities()
+                .ClickRegistrationAssistantStart()
+                .FillRegistrationBasicInfoForNewUser(_newUserDetails)
+                .ClickRegNext()
+                .FillRegistrationInfoForNewUser()
+                .ClickPrimaryGuardianNext();
         }
 
     }

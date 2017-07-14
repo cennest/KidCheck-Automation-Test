@@ -10,7 +10,7 @@ using KidCheckTest.Helper;
 
 namespace KidCheckTest.PageModel
 {
-     class LoginPageModel : HomePageModel
+    class LoginPageModel : HomePageModel
     {
 
         #region Page Setup
@@ -134,62 +134,75 @@ namespace KidCheckTest.PageModel
         public LoginPageModel FillLoginForm(LoginDetailsModel userDetail)
         {
             ActionHelper.WaitUntil(Driver, UserNameElement);
+
             UserNameElement.Clear();
             PasswordElement.Clear();
             UserNameElement.SendKeys(userDetail.UserName);
             PasswordElement.SendKeys(userDetail.Password);
-            Thread.Sleep(500);
+
+            Thread.Sleep(AppConstant.SleepTime);
             return new LoginPageModel(Driver, BaseUri);
         }
 
         public LoginPageModel FillLoginDetail(string username, string password)
         {
             ActionHelper.WaitUntil(Driver, UserNameElement);
+
             UserNameElement.Clear();
             PasswordElement.Clear();
             UserNameElement.SendKeys(username);
             PasswordElement.SendKeys(password);
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             return new LoginPageModel(Driver, BaseUri);
         }
 
         public AccountHomePageModel SubmitLogin()
         {
             LoginElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             return new AccountHomePageModel(Driver, BaseUri);
         }
+
         public LoginPageModel ClickCreateNewKidCheckAccount()
         {
             CreateNewKidcheckAccountElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             return new LoginPageModel(Driver, BaseUri);
         }
+
         public LoginPageModel ClickNeverUsedKidCheck()
         {
             NewAccountElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             return new LoginPageModel(Driver, BaseUri);
         }
+
         public LoginPageModel FillNewKidCheckAccountDetailForUsernameLogin(SignupDetailsModel _signuopDetailsModel)
         {
             Account_FirstNameElement.SendKeys(_signuopDetailsModel.Account_FirstName);
             Account_LastNameElement.SendKeys(_signuopDetailsModel.Account_Lastname);
             Login_IDontHaveEmailidElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             Login_UsernameElement.SendKeys(_signuopDetailsModel.Account_UserName);
             Account_HomePhoneElement.SendKeys(_signuopDetailsModel.Account_PhoneNumber);
             Account_CellPhoneElement.SendKeys(_signuopDetailsModel.Account_MobileNumber);
             Account_CellPhoneCarrierElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             Account_CellPhoneCarrierSelectElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             Account_PasswordElement.SendKeys(_signuopDetailsModel.Account_Password);
             Account_ConfirmPasswordElement.SendKeys(_signuopDetailsModel.Account_ConfirmPassword);
             return new LoginPageModel(Driver, BaseUri);
         }
 
-        public LoginPageModel FillNewKidCheckAccountDetailForEmailLogin (SignupDetailsModel _signuopDetailsModel)
+        public LoginPageModel FillNewKidCheckAccountDetailForEmailLogin(SignupDetailsModel _signuopDetailsModel)
         {
             Account_FirstNameElement.SendKeys(_signuopDetailsModel.Account_FirstName);
             Account_LastNameElement.SendKeys(_signuopDetailsModel.Account_Lastname);
@@ -197,11 +210,13 @@ namespace KidCheckTest.PageModel
             Account_HomePhoneElement.SendKeys(_signuopDetailsModel.Account_PhoneNumber);
             Account_CellPhoneElement.SendKeys(_signuopDetailsModel.Account_MobileNumber);
             Account_CellPhoneCarrierElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             Account_CellPhoneCarrierSelectElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             Account_PasswordElement.SendKeys(_signuopDetailsModel.Account_Password);
-            Account_ConfirmPasswordElement.SendKeys(_signuopDetailsModel.Account_ConfirmPassword);           
+            Account_ConfirmPasswordElement.SendKeys(_signuopDetailsModel.Account_ConfirmPassword);
             return new LoginPageModel(Driver, BaseUri);
         }
 
@@ -213,30 +228,38 @@ namespace KidCheckTest.PageModel
             Account_HomePhoneElement.SendKeys(_signuopDetailsModel.Account_PhoneNumber);
             Account_CellPhoneElement.SendKeys(_signuopDetailsModel.Account_MobileNumber);
             Account_CellPhoneCarrierElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             Account_CellPhoneCarrierSelectElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             Account_PasswordElement.SendKeys(_signuopDetailsModel.Account_Password);
             Account_ConfirmPasswordElement.SendKeys(_signuopDetailsModel.Account_ConfirmPassword);
             Account_RefOrgValueElement.SendKeys("cenn");
+
             Thread.Sleep(2000);
-           // Account_RefCompanyElement.Click();
-            // Thread.Sleep(2000);
+            // Account_RefCompanyElement.Click();
+            // Thread.Sleep(AppConstant.SleepTime * 4);
+
             Account_RefCompanySelectElement.Click();
             return new LoginPageModel(Driver, BaseUri);
         }
+
         public LoginPageModel Register()
         {
             Account_RegisterElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             return new LoginPageModel(Driver, BaseUri);
         }
+
         public AccountHomePageModel IAgree()
         {
             Account_IAgreeElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             return new AccountHomePageModel(Driver, BaseUri);
-        }     
+        }
         #endregion
     }
 }

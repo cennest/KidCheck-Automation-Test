@@ -192,20 +192,20 @@ namespace KidCheckTest.PageModel
         public IWebElement ContinueToStep4Element
         {
             get { return ById("ctl00_ContentMain_ucProduct_btnNextStep_btnRadButton"); }
-        }   
-        
+        }
+
         public IWebElement ContinueElement
         {
             get { return ById("ctl00_ContentMain_ucSummary_btnNextStep_btnRadButton"); }
-        }   
+        }
         public IWebElement Account_IDontHaveEmailElement
         {
             get { return ById("ctl00_ContentMain_ucAccount_lnkNoEmail"); }
-        }    
+        }
         public IWebElement Account_UsernameElement
         {
             get { return ById("ctl00_ContentMain_ucAccount_tbUsername1"); }
-        }         
+        }
 
         #endregion
 
@@ -213,7 +213,8 @@ namespace KidCheckTest.PageModel
         public SignupPageModel InitiateKidCheckSignUP()
         {
             SignUpKidCheckElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             return new SignupPageModel(Driver, BaseUri);
         }
 
@@ -221,9 +222,11 @@ namespace KidCheckTest.PageModel
         {
             //WebDriverWait wait = new WebDriverWait(Driver,TimeSpan.FromSeconds(1));
             //wait.Until(ExpectedConditions.ElementIsVisible(WelcomeElement)).click();
-            Thread.Sleep(2500);
+
+            Thread.Sleep(AppConstant.SleepTime * 5);
             WelcomeElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             return new SignupPageModel(Driver, BaseUri);
         }
 
@@ -252,18 +255,19 @@ namespace KidCheckTest.PageModel
             return new SignupPageModel(Driver, BaseUri);
         }
 
-
         public SignupPageModel ContinueToStep2()
         {
             ContinueToStep2Element.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             return new SignupPageModel(Driver, BaseUri);
         }
 
         public SignupPageModel ContinueUsingSameLogin()
         {
             ContinueUsingSameLoginElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             return new SignupPageModel(Driver, BaseUri);
         }
 
@@ -271,56 +275,75 @@ namespace KidCheckTest.PageModel
         {
             Account_OrganizationNameElement.SendKeys(childcareOrganizationDetailsModel.Childcare_OrganizationName);
             Account_OrgClassificationDropDownElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             Account_OrgClassificationSelectedDropDownElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             Account_OrgTypeDropDownElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             Account_OrgTypeSelectedDropDownElement.Click();
-            Thread.Sleep(500);
+
+            Thread.Sleep(AppConstant.SleepTime);
             Account_WebsiteElement.SendKeys(childcareOrganizationDetailsModel.Childcare_Website);
-            Thread.Sleep(500);
+
+            Thread.Sleep(AppConstant.SleepTime);
             Account_MainPhoneNumberElement.SendKeys(childcareOrganizationDetailsModel.Childcare_MainPhoneNumber);
             Account_MailingAddressElement.SendKeys(childcareOrganizationDetailsModel.Childcare_MailingAddress);
             Account_CityElement.SendKeys(childcareOrganizationDetailsModel.Childcare_City);
-            Thread.Sleep(500);
+
+            Thread.Sleep(AppConstant.SleepTime);
             Account_StateDropDownElement.Click();
-            Thread.Sleep(500);
+
+            Thread.Sleep(AppConstant.SleepTime);
             Account_StateSelectedDropDownElement.Click();
             Account_PostalCodeElement.SendKeys(childcareOrganizationDetailsModel.Childcare_PostalCode);
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             Account_CountryDropDownElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             Account_CountrySelectedDropDownElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             Account_TimeZoneDropDownElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             Account_TimeZoneSelectedDropDownElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             return new SignupPageModel(Driver, BaseUri);
         }
 
         public SignupPageModel ContinueToStep3()
         {
             ContinueToStep3Element.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             return new SignupPageModel(Driver, BaseUri);
         }
 
         public SignupPageModel KidcheckProductSelection()
         {
             Account_ProductEditionDropDownElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             Account_ProductEditionSelectedDropDownElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             Account_StationSelectedElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             Account_PaymentTypeDropDownElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             Account_PaymentTypeSelectedDropDownElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             Account_SalesRepDropDownElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             Account_SalesRepSelectedDropDownElement.Click();
             return new SignupPageModel(Driver, BaseUri);
         }
@@ -328,13 +351,16 @@ namespace KidCheckTest.PageModel
         public SignupPageModel ContinueToStep4()
         {
             ContinueToStep4Element.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             return new SignupPageModel(Driver, BaseUri);
         }
+
         public SignupPageModel Continue()
         {
             ContinueElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             return new SignupPageModel(Driver, BaseUri);
         }
 

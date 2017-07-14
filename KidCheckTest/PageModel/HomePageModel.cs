@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using System;
 using System.Threading;
+using KidCheckTest.Helper;
 
 namespace KidCheckTest.PageModel
 {
@@ -31,14 +32,16 @@ namespace KidCheckTest.PageModel
         public SignupPageModel InitiateSignUp()
         {
             SignUpButtonElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             return new SignupPageModel(Driver, BaseUri);
         }
 
         public LoginPageModel InitiateLogin()
         {
             LoginButtonElement.Click();
-            Thread.Sleep(1000);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
             return new LoginPageModel(Driver, BaseUri);
         }      
 
