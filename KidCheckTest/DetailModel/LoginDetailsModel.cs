@@ -22,7 +22,7 @@ namespace KidCheckTest.DetailModel
                     Password = "cennest";
                     break;
                 case UserRole.Administrator:
-                    UserName = "KidCheck@cennest.com";
+                    UserName = "nilesh.bhor@cennest.com";
                     Password = "cennest";
                     break;
             }

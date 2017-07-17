@@ -274,7 +274,7 @@ namespace KidCheckTest.PageModel
             return new AccountHomePageModel(Driver, BaseUri);
         }
 
-        public AccountHomePageModel FillRegistrationBasicInfoForNewUser(SignupDetailsModel _newUserDetails)
+        public AccountHomePageModel FillRegistrationBasicInfoForNewUser(SignupDetailsModel _newUserDetails, bool includeLogin)
         {
             regNewUserDetails.Account_FirstName = _newUserDetails.Account_FirstName;
             regNewUserDetails.Account_Lastname = _newUserDetails.Account_Lastname;
@@ -284,8 +284,12 @@ namespace KidCheckTest.PageModel
             regNewUserDetails.Account_MailingAddress = _newUserDetails.Account_MailingAddress;
             regNewUserDetails.Account_City = _newUserDetails.Account_City;
             regNewUserDetails.Account_PostalCode = _newUserDetails.Account_PostalCode;
-            regNewUserDetails.Account_UserName = _newUserDetails.Account_UserName;
-            regNewUserDetails.Account_Password = _newUserDetails.Account_Password;
+
+            if (includeLogin)
+            {
+                regNewUserDetails.Account_UserName = _newUserDetails.Account_UserName;
+                regNewUserDetails.Account_Password = _newUserDetails.Account_Password;
+            }
 
             Registration_HomePhoneElement.SendKeys(regNewUserDetails.Account_PhoneNumber);
             Registration_CellPhoneElement.SendKeys(regNewUserDetails.Account_MobileNumber);

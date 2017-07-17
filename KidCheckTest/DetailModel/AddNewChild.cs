@@ -12,7 +12,7 @@ namespace KidCheckTest.DetailModel
         {
             Random random = new Random();
             int no = random.Next(1, 130);
-            Child_Firstname = "christin" + no;
+            Child_Firstname = string.Format("christin{0}", no);
             Child_Lastname = "perry";
             Child_DOB = "11/10/2000";
             Child_MedicalORAllergy = "Kiwi";

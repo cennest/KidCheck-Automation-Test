@@ -38,7 +38,7 @@ namespace KidCheckTest.Helper
             {
                 foreach (var row in rows)
                 {
-                    if (row.FindElements(By.XPath("td[1]/" + tagType)).FirstOrDefault(cell => cell.Text.Trim().Equals(textToBeMatch)) != null)
+                    if (row.FindElements(By.XPath(string.Format("td[1]/{0}", tagType))).FirstOrDefault(cell => cell.Text.Trim().Equals(textToBeMatch)) != null)
                     {
                         matchedRow = row;
                         break;

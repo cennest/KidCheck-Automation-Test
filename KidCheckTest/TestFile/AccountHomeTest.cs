@@ -81,7 +81,7 @@ namespace KidCheckTest.TestFile
                 .ClickCheckin()
                 .ClickUtitlities()
                 .ClickRegistrationAssistantStart()
-                .FillRegistrationBasicInfoForNewUser(_newUserDetails)
+                .FillRegistrationBasicInfoForNewUser(_newUserDetails, true)
                 .ClickRegNext()
                 .FillRegistrationInfoForNewUser()
                 .ClickPrimaryGuardianNext();
