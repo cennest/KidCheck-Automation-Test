@@ -174,38 +174,9 @@ namespace KidCheckTest.PageModel
             Thread.Sleep(AppConstant.SleepTime * 4);
         }
 
-        public void AddNewChild()
+        public void AddChild()
         {
-            PrimaryGuardian_FirstnameElement.SendKeys(regNewUserDetails.Account_UserName);
-            PrimaryGuardian_LastnameElement.SendKeys(regNewUserDetails.Account_Lastname);
-            PrimaryGuardian_AddressElement.SendKeys(regNewUserDetails.Account_MailingAddress);
-            PrimaryGuardian_CityElement.SendKeys(regNewUserDetails.Account_City);
-            PrimaryGuardian_PostalCode.SendKeys(regNewUserDetails.Account_PostalCode);
-
-            Thread.Sleep(AppConstant.SleepTime * 2);
-            PrimaryGuardian_StateElement.Click();
-
-            Thread.Sleep(AppConstant.SleepTime * 2);
-            PrimaryGuardian_SelectedStateElement.Click();
-
-            Thread.Sleep(AppConstant.SleepTime * 2);
-            PrimaryGuardian_CountryElement.Click();
-
-            Thread.Sleep(AppConstant.SleepTime * 2);
-            PrimaryGuardian_SelectedCountryElement.Click();
-
-            Thread.Sleep(AppConstant.SleepTime * 2);
-            PrimaryGuardian_CellphoneCarrierElement.Click();
-
-            Thread.Sleep(AppConstant.SleepTime * 2);
-            PrimaryGuardian_SelectedCellphoneCompanyElement.Click();
-
-            if (createLogin)
-            {
-                PrimaryGuardian_UsernameElement.SendKeys(regNewUserDetails.Account_UserName);
-                PrimaryGuardian_PasswordElement.SendKeys(regNewUserDetails.Account_Password);
-            }
-            Thread.Sleep(AppConstant.SleepTime * 4);
+           
         }
 
         #endregion
