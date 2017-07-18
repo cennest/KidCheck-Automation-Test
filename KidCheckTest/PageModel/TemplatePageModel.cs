@@ -75,10 +75,10 @@ namespace KidCheckTest.PageModel
             Thread.Sleep(AppConstant.SleepTime * 2);
         }
 
-        public void FillNewTemplateDetails(AddNewTemplate _addNewTemplate)
+        public void FillNewTemplateDetails(TemplateModel template)
         {
-            TemplateNameElement.SendKeys(_addNewTemplate.TemplateName);
-            TemplateDescriptionElement.SendKeys(_addNewTemplate.Description);
+            TemplateNameElement.SendKeys(template.Name);
+            TemplateDescriptionElement.SendKeys(template.Description);
             CampusDropDownElement.Click();
             Thread.Sleep(AppConstant.SleepTime * 2);
             CampusSelectedDropDownElement.Click();

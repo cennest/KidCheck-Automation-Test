@@ -13,10 +13,10 @@ namespace KidCheckTest.PageModel
     class UtilitiesPageModel : BasePageModel
     {
         #region Page Setup
-        public SignupDetailsModel regNewUserDetails;
+        public SignupModel regNewUserDetails;
         public UtilitiesPageModel(IWebDriver driver, Uri baseUri) : base(driver, baseUri)
         {
-            regNewUserDetails = new SignupDetailsModel();
+            regNewUserDetails = new SignupModel();
         }
 
         public UtilitiesPageModel Load()

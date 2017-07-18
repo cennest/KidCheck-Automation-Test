@@ -15,19 +15,15 @@ namespace KidCheckTest.TestFile
     public class CheckinTest : UITestBase
     {
         IWebDriver driver = null;
-        private LoginDetailsModel _adminLoginDetails;
-        private LoginDetailsModel _kidCheckAdminLoginDetails;
-        private AddNewTemplate _addNewTemplate;
-        SignupDetailsModel _newUserDetails;
+        private LoginModel loginModel;
+        private TemplateModel templateModel;
 
         [TestInitialize]
         public void Setup()
         {
             driver = GetDriver();
-            _adminLoginDetails = new LoginDetailsModel(UserRole.Administrator);
-            _kidCheckAdminLoginDetails = new LoginDetailsModel(UserRole.KidCheckAdmin);
-            _addNewTemplate = new AddNewTemplate();
-            _newUserDetails = new SignupDetailsModel();
+            loginModel = new LoginModel(UserRole.Administrator);
+            templateModel = new TemplateModel();
         }
 
         [TestCleanup]
@@ -47,14 +43,14 @@ namespace KidCheckTest.TestFile
             var loginPage = new LoginPageModel(driver, BaseUri);
 
             loginPage.Load();
-            TemplatePageModel templatePage = loginPage.InitiateLogin(_adminLoginDetails.UserName, _adminLoginDetails.Password)
+            TemplatePageModel templatePage = loginPage.InitiateLogin(loginModel.UserName, loginModel.Password)
                 .ClickCheckinTab()
                 .ClickTemplatesTab();
 
             int iRowCount = driver.FindElements(By.XPath("//*[@id='ctl00_ContentMain_rgList_ctl00']/tbody/tr")).Count;
 
             templatePage.ClickAddNewTemplate();
-            templatePage.FillNewTemplateDetails(_addNewTemplate);
+            templatePage.FillNewTemplateDetails(templateModel);
             templatePage.SubmitNewTemplate();
             templatePage.DragDropLocationTemplate();
             templatePage.SaveNewTemplateLocation();

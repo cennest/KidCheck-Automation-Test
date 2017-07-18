@@ -13,11 +13,9 @@ namespace KidCheckTest.PageModel
     class MyAccountPageModel : BasePageModel
     {
         #region Page Setup
-        public SignupDetailsModel regNewUserDetails;
         public MyAccountPageModel(IWebDriver driver, Uri baseUri)
            : base(driver, baseUri)
         {
-            regNewUserDetails = new SignupDetailsModel();
         }
 
         public MyAccountPageModel Load()
@@ -83,13 +81,13 @@ namespace KidCheckTest.PageModel
             Thread.Sleep(AppConstant.SleepTime * 2);
         }
 
-        public void FillNewKidDetails(AddNewChild _addNewChild)
+        public void FillNewKidDetails(ChildModel child)
         {
-            Child_FirstnameElement.SendKeys(_addNewChild.Child_Firstname);
-            Child_LastnameElement.SendKeys(_addNewChild.Child_Lastname);
-            Child_DOBElement.SendKeys(_addNewChild.Child_DOB);
+            Child_FirstnameElement.SendKeys(child.Firstname);
+            Child_LastnameElement.SendKeys(child.Lastname);
+            Child_DOBElement.SendKeys(child.DateOfBirth);
             Child_MaleElement.Click();
-            Child_MedicalORAllergyElement.SendKeys(_addNewChild.Child_MedicalORAllergy);
+            Child_MedicalORAllergyElement.SendKeys(child.MedicalAllergy);
         }
 
         public void SubmitNewKid()

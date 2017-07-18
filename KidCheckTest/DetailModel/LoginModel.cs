@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace KidCheckTest.DetailModel
 {
-    class LoginDetailsModel
+    class LoginModel
     {
-        public LoginDetailsModel()
+        public LoginModel()
         {
             UserName = "KidcheckAutomationTest";
             Password = "cennes";
         }
-        public LoginDetailsModel(string userRole)
+        public LoginModel(string userRole)
         {
             switch (userRole)
             {

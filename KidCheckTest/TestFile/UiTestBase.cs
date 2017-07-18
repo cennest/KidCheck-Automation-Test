@@ -68,17 +68,7 @@ namespace KidCheckTest.TestFile
 
         protected Uri GetBaseUri()
         {
-            //if(loginType == "login")
-            //{
-            //    return new Uri(localLoginUri);
-            //} else if(loginType == "signup")
-            //{
-            //    return new Uri(Helper.AppConstant.SignUpURL);
-            //}
-            //else
-            //{
-            return new Uri(Helper.AppConstant.SignInURL);
-            //}
+            return new Uri(Helper.AppConstant.LoginURL);
         }
     }
 }

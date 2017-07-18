@@ -10,17 +10,17 @@ namespace KidCheckTest.TestFile
     public class InitialSetupTest : UITestBase
     {
         IWebDriver driver = null;
-        private LoginDetailsModel _loginDetails;
-        private SignupDetailsModel _signupDetails;
-        private ChildcareOrganizationDetailsModel _childcareOrganizationDetailsModel;
+        private LoginModel loginModel;
+        private SignupModel signupModel;
+        private OrganizationModel organizationModel;
 
         [TestInitialize]
         public void Setup()
         {
             driver = GetDriver();
-            _loginDetails = new LoginDetailsModel(UserRole.Administrator);
-            _signupDetails = new SignupDetailsModel();
-            _childcareOrganizationDetailsModel = new ChildcareOrganizationDetailsModel();
+            loginModel = new LoginModel(UserRole.Administrator);
+            signupModel = new SignupModel();
+            organizationModel = new OrganizationModel();
         }
 
         [TestCleanup]
@@ -43,21 +43,21 @@ namespace KidCheckTest.TestFile
             var signupPage = new SignupPageModel(driver, BaseUri);
 
             signupPage.ClickReadyToGo();
-            signupPage.FillNewAccountDetails(_signupDetails, false);
+            signupPage.FillNewAccountDetails(signupModel, false);
             signupPage.ContinueToStep2();
             signupPage.ContinueUsingSameLogin();
-            signupPage.FillChildCareOrgDetails(_childcareOrganizationDetailsModel);
+            signupPage.FillChildCareOrgDetails(organizationModel);
             signupPage.ContinueToStep3();
             signupPage.KidcheckProductSelection();
             signupPage.ContinueToStep4();
             signupPage.SubmitDetails();
 
             driver.Navigate()
-                .GoToUrl(Helper.AppConstant.SignInURL);
+                .GoToUrl(BaseUri);
 
             var loginPage = new LoginPageModel(driver, BaseUri);
             HomePageModel homePage = loginPage
-                .InitiateLogin(_signupDetails.Account_EmailID, _signupDetails.Account_Password)
+                .InitiateLogin(signupModel.EmailID, signupModel.Password)
                 .ClickIAgree();
 
             Assert.AreEqual(homePage.HomeTabElement.Text, "Home");
@@ -72,22 +72,22 @@ namespace KidCheckTest.TestFile
             var signupPage = new SignupPageModel(driver, BaseUri);
 
             signupPage.ClickReadyToGo();
-            signupPage.FillNewAccountDetails(_signupDetails, true);
+            signupPage.FillNewAccountDetails(signupModel, true);
             signupPage.ContinueToStep2();
             signupPage.ContinueUsingSameLogin();
-            signupPage.FillChildCareOrgDetails(_childcareOrganizationDetailsModel);
+            signupPage.FillChildCareOrgDetails(organizationModel);
             signupPage.ContinueToStep3();
             signupPage.KidcheckProductSelection();
             signupPage.ContinueToStep4();
             signupPage.SubmitDetails();
 
             driver.Navigate()
-                .GoToUrl(Helper.AppConstant.SignInURL);
+                .GoToUrl(BaseUri);
 
             var loginPage = new LoginPageModel(driver, BaseUri);
 
             HomePageModel homePage = loginPage
-                .InitiateLogin(_signupDetails.Account_UserName, _signupDetails.Account_Password)
+                .InitiateLogin(signupModel.UserName, signupModel.Password)
                 .ClickIAgree();
 
             Assert.AreEqual(homePage.HomeTabElement.Text, "Home");
@@ -104,7 +104,7 @@ namespace KidCheckTest.TestFile
             loginPage.Load()
                 .ClickCreateNewAccount();
             loginPage.ClickNeverUsedKidCheck();
-            loginPage.FillNewKidCheckAccountDetails(_signupDetails, false, false);
+            loginPage.FillNewKidCheckAccountDetails(signupModel, false, false);
             loginPage.Register();
 
             HomePageModel homePage = loginPage.AcceptEULA();
@@ -120,7 +120,7 @@ namespace KidCheckTest.TestFile
             loginPage.Load()
                .ClickCreateNewAccount();
             loginPage.ClickNeverUsedKidCheck();
-            loginPage.FillNewKidCheckAccountDetails(_signupDetails, true, false);
+            loginPage.FillNewKidCheckAccountDetails(signupModel, true, false);
             loginPage.Register();
 
             HomePageModel homePage = loginPage.AcceptEULA();
@@ -136,7 +136,7 @@ namespace KidCheckTest.TestFile
             loginPage.Load()
                 .ClickCreateNewAccount();
             loginPage.ClickNeverUsedKidCheck();
-            loginPage.FillNewKidCheckAccountDetails(_signupDetails, false, true);
+            loginPage.FillNewKidCheckAccountDetails(signupModel, false, true);
             loginPage.Register();
 
             HomePageModel homePage = loginPage.AcceptEULA();
@@ -150,7 +150,7 @@ namespace KidCheckTest.TestFile
             var loginPage = new LoginPageModel(driver, BaseUri);
 
             PreCheckinPageModel preCheckinPage = loginPage.Load()
-                .InitiateLogin(_loginDetails.UserName, _loginDetails.Password)
+                .InitiateLogin(loginModel.UserName, loginModel.Password)
                 .ClickCheckinTab()
                 .ClickUtitlitiesTab()
                 .ClickRegistrationAssistantStartButton();

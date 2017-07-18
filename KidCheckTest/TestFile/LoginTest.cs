@@ -17,15 +17,15 @@ namespace KidCheckTest
     public class LoginTest : UITestBase
     {
         IWebDriver driver = null;
-        private LoginDetailsModel _loginDetails;
-        private LoginDetailsModel _InvalidLoginDetails;
+        private LoginModel loginModel;
+        private LoginModel invalidLoginModel;
 
         [TestInitialize]
         public void Setup()
         {
             driver = GetDriver();
-            _loginDetails = new LoginDetailsModel(UserRole.Administrator);
-            _InvalidLoginDetails = new LoginDetailsModel();
+            loginModel = new LoginModel(UserRole.Administrator);
+            invalidLoginModel = new LoginModel();
         }
 
         [TestCleanup]
@@ -42,7 +42,7 @@ namespace KidCheckTest
         {
             var loginPage = new LoginPageModel(driver, BaseUri);
             HomePageModel homePage = loginPage.Load()
-                .InitiateLogin(_loginDetails.UserName, _loginDetails.Password);
+                .InitiateLogin(loginModel.UserName, loginModel.Password);
 
             string homeElementText = homePage.HomeTabElement.Text;
             Assert.AreEqual(homeElementText, "Home");
@@ -53,7 +53,7 @@ namespace KidCheckTest
         {
             var loginPage = new LoginPageModel(driver, BaseUri);
             HomePageModel homePage = loginPage.Load()
-                .InitiateLogin(_loginDetails.UserName, _loginDetails.Password);
+                .InitiateLogin(loginModel.UserName, loginModel.Password);
             
             Assert.AreEqual(homePage.HomeTabElement.Text, "Home");
         }
@@ -63,7 +63,7 @@ namespace KidCheckTest
         {
             var loginPage = new LoginPageModel(driver, BaseUri);
             loginPage.Load()
-                .InitiateLogin(_InvalidLoginDetails.UserName, _InvalidLoginDetails.Password);
+                .InitiateLogin(loginModel.UserName, loginModel.Password);
             
             Assert.AreEqual(loginPage.Login_UserErrorPageElement.Text, "The credentials you entered are invalid. Please re-enter your username and password.");
         }
@@ -73,7 +73,7 @@ namespace KidCheckTest
         {
             var loginPage = new LoginPageModel(driver, BaseUri);
             loginPage.Load()
-                .InitiateLogin(_InvalidLoginDetails.UserName, _InvalidLoginDetails.Password);
+                .InitiateLogin(invalidLoginModel.UserName, invalidLoginModel.Password);
             
             Assert.AreEqual(loginPage.Login_UserErrorPageElement.Text, "The credentials you entered are invalid. Please re-enter your username and password.");
         }
@@ -83,7 +83,7 @@ namespace KidCheckTest
         {
             var loginPage = new LoginPageModel(driver, BaseUri);
             loginPage.Load()
-                .InitiateLogin(_InvalidLoginDetails.UserName, _InvalidLoginDetails.Password);
+                .InitiateLogin(invalidLoginModel.UserName, invalidLoginModel.Password);
             
             Assert.AreEqual(loginPage.Login_UserErrorPageElement.Text, "The credentials you entered are invalid. Please re-enter your username and password.");
         }

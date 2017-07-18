@@ -11,6 +11,6 @@ namespace KidCheckTest.Helper
         public const int SleepTime = 500;
         private const string BaseURL = "https://go.kidcheck.com";
         public static string SignUpURL = string.Format("{0}/signup/", BaseURL);
-        public static string SignInURL = string.Format("{0}/signin.aspx", BaseURL);
+        public static string LoginURL = string.Format("{0}/signin.aspx", BaseURL);
     }
 }

@@ -14,10 +14,10 @@ namespace KidCheckTest.PageModel
     {
 
         #region Page Setup
-        public SignupDetailsModel regNewUserDetails;
+        public SignupModel signupModel;
         public PreCheckinPageModel(IWebDriver driver, Uri baseUri) : base(driver, baseUri)
         {
-            regNewUserDetails = new SignupDetailsModel();
+            signupModel = new SignupModel();
         }
 
         public PreCheckinPageModel Load()
@@ -134,19 +134,19 @@ namespace KidCheckTest.PageModel
 
         public void FillRegistrationBasicInfo()
         {
-            HomePhoneElement.SendKeys(regNewUserDetails.Account_PhoneNumber);
-            CellPhoneElement.SendKeys(regNewUserDetails.Account_MobileNumber);
-            EmailIdElement.SendKeys(regNewUserDetails.Account_EmailID);
+            HomePhoneElement.SendKeys(signupModel.PhoneNumber);
+            CellPhoneElement.SendKeys(signupModel.MobileNumber);
+            EmailIdElement.SendKeys(signupModel.EmailID);
             Thread.Sleep(AppConstant.SleepTime * 2);
         }
 
         public void FillNewUserDetails(bool createLogin)
         {
-            PrimaryGuardian_FirstnameElement.SendKeys(regNewUserDetails.Account_UserName);
-            PrimaryGuardian_LastnameElement.SendKeys(regNewUserDetails.Account_Lastname);
-            PrimaryGuardian_AddressElement.SendKeys(regNewUserDetails.Account_MailingAddress);
-            PrimaryGuardian_CityElement.SendKeys(regNewUserDetails.Account_City);
-            PrimaryGuardian_PostalCode.SendKeys(regNewUserDetails.Account_PostalCode);
+            PrimaryGuardian_FirstnameElement.SendKeys(signupModel.UserName);
+            PrimaryGuardian_LastnameElement.SendKeys(signupModel.Lastname);
+            PrimaryGuardian_AddressElement.SendKeys(signupModel.MailingAddress);
+            PrimaryGuardian_CityElement.SendKeys(signupModel.City);
+            PrimaryGuardian_PostalCode.SendKeys(signupModel.PostalCode);
 
             Thread.Sleep(AppConstant.SleepTime * 2);
             PrimaryGuardian_StateElement.Click();
@@ -168,8 +168,8 @@ namespace KidCheckTest.PageModel
 
             if (createLogin)
             {
-                PrimaryGuardian_UsernameElement.SendKeys(regNewUserDetails.Account_UserName);
-                PrimaryGuardian_PasswordElement.SendKeys(regNewUserDetails.Account_Password);
+                PrimaryGuardian_UsernameElement.SendKeys(signupModel.UserName);
+                PrimaryGuardian_PasswordElement.SendKeys(signupModel.Password);
             }
             Thread.Sleep(AppConstant.SleepTime * 4);
         }

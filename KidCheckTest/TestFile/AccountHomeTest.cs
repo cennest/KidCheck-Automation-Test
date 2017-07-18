@@ -10,15 +10,15 @@ namespace KidCheckTest.TestFile
     public class AccountHomeTest : UITestBase
     {
         IWebDriver driver = null;
-        private LoginDetailsModel _loginDetails;
-        private AddNewChild _addNewChild;
+        private LoginModel loginModel;
+        private ChildModel childModel;
 
         [TestInitialize]
         public void Setup()
         {
             driver = GetDriver();
-            _loginDetails = new LoginDetailsModel(UserRole.Administrator);
-            _addNewChild = new AddNewChild();
+            loginModel = new LoginModel(UserRole.Administrator);
+            childModel = new ChildModel();
         }
 
         [TestCleanup]
@@ -36,7 +36,7 @@ namespace KidCheckTest.TestFile
             var loginPage = new LoginPageModel(driver, BaseUri);
 
             MyAccountPageModel myAccountPage = loginPage.Load()
-                .InitiateLogin(_loginDetails.UserName, _loginDetails.Password)
+                .InitiateLogin(loginModel.UserName, loginModel.Password)
                 .ClickMyAccountTab();
 
             myAccountPage.ClickKidsTab();
@@ -47,7 +47,7 @@ namespace KidCheckTest.TestFile
             int initialRowCount = row.Count;
             driver.SwitchTo().Frame(0);
 
-            myAccountPage.FillNewKidDetails(_addNewChild);
+            myAccountPage.FillNewKidDetails(childModel);
             myAccountPage.SubmitNewKid();
 
             IList<IWebElement> rowAfterInsert = driver.FindElements(By.XPath("//*[@id='ctl00_ContentMain_dgKids']" + " / tbody/tr[*]"));

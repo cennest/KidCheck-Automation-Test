@@ -61,12 +61,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="DetailModel\AddNewChild.cs" />
-    <Compile Include="DetailModel\AddNewTemplate.cs" />
-    <Compile Include="DetailModel\ChildcareOrganizationDetailsModel.cs" />
-    <Compile Include="DetailModel\LoginDetailsModel.cs" />
-    <Compile Include="DetailModel\NewKidCheckAccount.cs" />
-    <Compile Include="DetailModel\SignupDetailsModel.cs" />
+    <Compile Include="DetailModel\ChildModel.cs" />
+    <Compile Include="DetailModel\TemplateModel.cs" />
+    <Compile Include="DetailModel\OrganizationModel.cs" />
+    <Compile Include="DetailModel\LoginModel.cs" />
+    <Compile Include="DetailModel\SignupModel.cs" />
     <Compile Include="DetailModel\UserRole.cs" />
     <Compile Include="Helper\ActionHelper.cs" />
     <Compile Include="Helper\AppConstant.cs" />

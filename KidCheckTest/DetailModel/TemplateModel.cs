@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace KidCheckTest.DetailModel
 {
-    class AddNewTemplate
+    class TemplateModel
     {
-        public AddNewTemplate()
+        public TemplateModel()
         {
             Random random = new Random();
             int no = random.Next(1, 130);
-            TemplateName = string.Format("Template_{0}", no);
-            Description = "This is the description of template" + TemplateName;
+            Name = string.Format("Template_{0}", no);
+            Description = string.Format("This is the description of template ", Name);
         }
 
-        public string TemplateName { get; set; }
+        public string Name { get; set; }
         public string Description { get; set; }
     }
 }

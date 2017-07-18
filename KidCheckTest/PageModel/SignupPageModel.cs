@@ -228,22 +228,22 @@ namespace KidCheckTest.PageModel
             Thread.Sleep(AppConstant.SleepTime * 2);
         }
 
-        public void FillNewAccountDetails(SignupDetailsModel _signupDetail, bool fillUserName)
+        public void FillNewAccountDetails(SignupModel signupModel, bool fillUserName)
         {
-            Account_FirstNameElement.SendKeys(_signupDetail.Account_FirstName);
-            Account_LastnameElement.SendKeys(_signupDetail.Account_Lastname);
-            Account_EmailIDElement.SendKeys(_signupDetail.Account_EmailID);
+            Account_FirstNameElement.SendKeys(signupModel.FirstName);
+            Account_LastnameElement.SendKeys(signupModel.Lastname);
+            Account_EmailIDElement.SendKeys(signupModel.EmailID);
 
             if (fillUserName)
             {
                 Account_IDontHaveEmailElement.Click();
-                Account_UsernameElement.SendKeys(_signupDetail.Account_UserName);
+                Account_UsernameElement.SendKeys(signupModel.UserName);
             }
 
-            Account_PasswordElement.SendKeys(_signupDetail.Account_Password);
-            Account_ConfirmPasswordElement.SendKeys(_signupDetail.Account_ConfirmPassword);
-            Account_PhoneNumberElement.SendKeys(_signupDetail.Account_PhoneNumber);
-            Account_MobileNumberElement.SendKeys(_signupDetail.Account_MobileNumber);
+            Account_PasswordElement.SendKeys(signupModel.Password);
+            Account_ConfirmPasswordElement.SendKeys(signupModel.ConfirmPassword);
+            Account_PhoneNumberElement.SendKeys(signupModel.PhoneNumber);
+            Account_MobileNumberElement.SendKeys(signupModel.MobileNumber);
         }
 
         public void ContinueToStep2()
@@ -258,9 +258,9 @@ namespace KidCheckTest.PageModel
             Thread.Sleep(AppConstant.SleepTime * 2);
         }
 
-        public void FillChildCareOrgDetails(ChildcareOrganizationDetailsModel childcareOrganizationDetailsModel)
+        public void FillChildCareOrgDetails(OrganizationModel organizationModel)
         {
-            Account_OrganizationNameElement.SendKeys(childcareOrganizationDetailsModel.Childcare_OrganizationName);
+            Account_OrganizationNameElement.SendKeys(organizationModel.OrganizationName);
             Account_OrgClassificationDropDownElement.Click();
 
             Thread.Sleep(AppConstant.SleepTime * 2);
@@ -273,19 +273,19 @@ namespace KidCheckTest.PageModel
             Account_OrgTypeSelectedDropDownElement.Click();
 
             Thread.Sleep(AppConstant.SleepTime);
-            Account_WebsiteElement.SendKeys(childcareOrganizationDetailsModel.Childcare_Website);
+            Account_WebsiteElement.SendKeys(organizationModel.Website);
 
             Thread.Sleep(AppConstant.SleepTime);
-            Account_MainPhoneNumberElement.SendKeys(childcareOrganizationDetailsModel.Childcare_MainPhoneNumber);
-            Account_MailingAddressElement.SendKeys(childcareOrganizationDetailsModel.Childcare_MailingAddress);
-            Account_CityElement.SendKeys(childcareOrganizationDetailsModel.Childcare_City);
+            Account_MainPhoneNumberElement.SendKeys(organizationModel.MainPhoneNumber);
+            Account_MailingAddressElement.SendKeys(organizationModel.MailingAddress);
+            Account_CityElement.SendKeys(organizationModel.City);
 
             Thread.Sleep(AppConstant.SleepTime);
             Account_StateDropDownElement.Click();
 
             Thread.Sleep(AppConstant.SleepTime);
             Account_StateSelectedDropDownElement.Click();
-            Account_PostalCodeElement.SendKeys(childcareOrganizationDetailsModel.Childcare_PostalCode);
+            Account_PostalCodeElement.SendKeys(organizationModel.PostalCode);
 
             Thread.Sleep(AppConstant.SleepTime * 2);
             Account_CountryDropDownElement.Click();

@@ -179,27 +179,27 @@ namespace KidCheckTest.PageModel
             Thread.Sleep(AppConstant.SleepTime * 2);
         }
 
-        public void FillNewKidCheckAccountDetails(SignupDetailsModel _signuopDetailsModel, bool fillUsername, bool fillRefOrg)
+        public void FillNewKidCheckAccountDetails(SignupModel signuopModel, bool fillUsername, bool fillRefOrg)
         {
-            Account_FirstNameElement.SendKeys(_signuopDetailsModel.Account_FirstName);
-            Account_LastNameElement.SendKeys(_signuopDetailsModel.Account_Lastname);
-            Account_EmailIDElement.SendKeys(_signuopDetailsModel.Account_EmailID);
+            Account_FirstNameElement.SendKeys(signuopModel.FirstName);
+            Account_LastNameElement.SendKeys(signuopModel.Lastname);
+            Account_EmailIDElement.SendKeys(signuopModel.EmailID);
 
             if (fillUsername)
             {
-                FillUsername(_signuopDetailsModel.Account_UserName);
+                FillUsername(signuopModel.UserName);
             }
 
-            Account_HomePhoneElement.SendKeys(_signuopDetailsModel.Account_PhoneNumber);
-            Account_CellPhoneElement.SendKeys(_signuopDetailsModel.Account_MobileNumber);
+            Account_HomePhoneElement.SendKeys(signuopModel.PhoneNumber);
+            Account_CellPhoneElement.SendKeys(signuopModel.MobileNumber);
             Account_CellPhoneCarrierElement.Click();
 
             Thread.Sleep(AppConstant.SleepTime * 2);
             Account_CellPhoneCarrierSelectElement.Click();
 
             Thread.Sleep(AppConstant.SleepTime * 2);
-            Account_PasswordElement.SendKeys(_signuopDetailsModel.Account_Password);
-            Account_ConfirmPasswordElement.SendKeys(_signuopDetailsModel.Account_ConfirmPassword);
+            Account_PasswordElement.SendKeys(signuopModel.Password);
+            Account_ConfirmPasswordElement.SendKeys(signuopModel.ConfirmPassword);
 
             if (fillRefOrg)
             {
