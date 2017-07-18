@@ -337,7 +337,7 @@ namespace KidCheckTest.PageModel
             Thread.Sleep(AppConstant.SleepTime * 2);
         }
 
-        public void Continue()
+        public void SubmitDetails()
         {
             ContinueElement.Click();
             Thread.Sleep(AppConstant.SleepTime * 2);

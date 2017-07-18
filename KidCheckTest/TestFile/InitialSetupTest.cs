@@ -50,7 +50,7 @@ namespace KidCheckTest.TestFile
             signupPage.ContinueToStep3();
             signupPage.KidcheckProductSelection();
             signupPage.ContinueToStep4();
-            signupPage.Continue();
+            signupPage.SubmitDetails();
 
             driver.Navigate()
                 .GoToUrl(Helper.AppConstant.SignInURL);
@@ -79,7 +79,7 @@ namespace KidCheckTest.TestFile
             signupPage.ContinueToStep3();
             signupPage.KidcheckProductSelection();
             signupPage.ContinueToStep4();
-            signupPage.Continue();
+            signupPage.SubmitDetails();
 
             driver.Navigate()
                 .GoToUrl(Helper.AppConstant.SignInURL);

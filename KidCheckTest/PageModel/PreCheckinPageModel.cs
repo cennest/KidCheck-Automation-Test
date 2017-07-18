@@ -119,18 +119,24 @@ namespace KidCheckTest.PageModel
         #endregion
 
         #region Methods        
+        
+        public void ClickRegNext()
+        {
+            NextElement.Click();
+            Thread.Sleep(AppConstant.SleepTime * 2);
+        }
+
+        public void PrimaryGuardianNextClick()
+        {
+            PrimaryGuardian_NextElement.Click();
+            Thread.Sleep(AppConstant.SleepTime * 2);
+        }
 
         public void FillRegistrationBasicInfo()
         {
             HomePhoneElement.SendKeys(regNewUserDetails.Account_PhoneNumber);
             CellPhoneElement.SendKeys(regNewUserDetails.Account_MobileNumber);
             EmailIdElement.SendKeys(regNewUserDetails.Account_EmailID);
-            Thread.Sleep(AppConstant.SleepTime * 2);
-        }
-
-        public void ClickRegNext()
-        {
-            NextElement.Click();
             Thread.Sleep(AppConstant.SleepTime * 2);
         }
 
@@ -165,16 +171,13 @@ namespace KidCheckTest.PageModel
                 PrimaryGuardian_UsernameElement.SendKeys(regNewUserDetails.Account_UserName);
                 PrimaryGuardian_PasswordElement.SendKeys(regNewUserDetails.Account_Password);
             }
-
             Thread.Sleep(AppConstant.SleepTime * 4);
         }
 
-        public void PrimaryGuardianNextClick()
+        public void AddChild()
         {
-            PrimaryGuardian_NextElement.Click();
-            Thread.Sleep(AppConstant.SleepTime * 2);
+           
         }
-
 
         #endregion
     }
