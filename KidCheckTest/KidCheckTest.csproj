@@ -80,7 +80,7 @@
     <Compile Include="TestFile\AccountHomeTest.cs" />
     <Compile Include="TestFile\InitialSetupTest.cs" />
     <Compile Include="TestFile\LoginTest.cs" />
-    <Compile Include="TestFile\UiTestBase.cs" />
+    <Compile Include="TestFile\UITestBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

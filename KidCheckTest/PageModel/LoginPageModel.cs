@@ -27,121 +27,117 @@ namespace KidCheckTest.PageModel
         #endregion
 
         #region Login Page Elements
-        public IWebElement UserNameElement
+        private IWebElement UserNameElement
         {
             get { return ById("ctl00_ContentMain_pbLogin_i0_i0_tbUsername"); }
         }
 
-        public IWebElement PasswordElement
+        private IWebElement PasswordElement
         {
             get { return ById("ctl00_ContentMain_pbLogin_i0_i0_tbPassword"); }
         }
 
-        public IWebElement ForgotPasswordElement
+        private IWebElement ForgotPasswordElement
         {
             get { return ById("btnForgetPassword"); }
         }
 
-        public IWebElement LoginElement
+        private IWebElement LoginElement
         {
             get { return ById("ctl00_ContentMain_pbLogin_i0_i0_btnLogin_btnRadButton"); }
         }
 
-        public IWebElement CreateNewAccountElement
+        private IWebElement CreateNewAccountElement
         {
             get { return ByXPath("//*[@id='rpiRegisterPanel']/span/span[2]"); }
         }
 
-        public IWebElement NewAccountElement
+        private IWebElement NewAccountElement
         {
             get { return ById("ctl00_ContentMain_pbLogin_i2_i0_KcButton1_btnRadButton"); }
         }
-        public IWebElement Account_FirstNameElement
+        private IWebElement Account_FirstNameElement
         {
             get { return ById("ctl00_ContentMain_pbLogin_i2_i0_tbFirstName"); }
         }
-        public IWebElement Account_LastNameElement
+        private IWebElement Account_LastNameElement
         {
             get { return ById("ctl00_ContentMain_pbLogin_i2_i0_tbLastName"); }
         }
-        public IWebElement Account_EmailIDElement
+        private IWebElement Account_EmailIDElement
         {
             get { return ById("ctl00_ContentMain_pbLogin_i2_i0_tbEmail"); }
         }
-        public IWebElement Account_HomePhoneElement
+        private IWebElement Account_HomePhoneElement
         {
             get { return ById("ctl00_ContentMain_pbLogin_i2_i0_tbHomePhone"); }
         }
-        public IWebElement Account_CellPhoneElement
+        private IWebElement Account_CellPhoneElement
         {
             get { return ById("ctl00_ContentMain_pbLogin_i2_i0_tbCellPhone"); }
         }
-        public IWebElement Account_CellPhoneCarrierElement
+        private IWebElement Account_CellPhoneCarrierElement
         {
             get { return ById("ctl00_ContentMain_pbLogin_i2_i0_ddSMSCarrier_Arrow"); }
         }
-        public IWebElement Account_CellPhoneCarrierSelectElement
+        private IWebElement Account_CellPhoneCarrierSelectElement
         {
             get { return ByXPath("//*[@id='ctl00_ContentMain_pbLogin_i2_i0_ddSMSCarrier_DropDown']/div/ul/li[5]"); }
         }
-        public IWebElement Account_PasswordElement
+        private IWebElement Account_PasswordElement
         {
             get { return ById("ctl00_ContentMain_pbLogin_i2_i0_tbPassword1"); }
         }
-        public IWebElement Account_ConfirmPasswordElement
+        private IWebElement Account_ConfirmPasswordElement
         {
             get { return ById("ctl00_ContentMain_pbLogin_i2_i0_tbPassword2"); }
         }
-        public IWebElement Account_RefOrgValueElement
+        private IWebElement Account_RefOrgValueElement
         {
             get { return ById("ctl00_ContentMain_pbLogin_i2_i0_ddCustomerID_Input"); }
         }
-        public IWebElement Account_RefCompanyElement
+        private IWebElement Account_RefCompanyElement
         {
             get { return ById("ctl00_ContentMain_pbLogin_i2_i0_ddCustomerID_Arrow"); }
         }
-        public IWebElement Account_RefCompanySelectElement
+        private IWebElement Account_RefCompanySelectElement
         {
             get { return ByXPath("//*[@id='ctl00_ContentMain_pbLogin_i2_i0_ddCustomerID_DropDown']/div/ul/li[2]"); }
         }
-        public IWebElement Account_RegisterElement
+        private IWebElement Account_RegisterElement
         {
             get { return ById("ctl00_ContentMain_pbLogin_i2_i0_btnRegister_btnRadButton"); }
         }
-        public IWebElement EULA_IAgreeElement
+        private IWebElement EULA_IAgreeElement
         {
             get { return ById("ctl00_ContentMain_btnAgree_btnRadButton"); }
         }
-        public IWebElement Login_UserErrorPageElement
-        {
-            get { return ById("ctl00_ContentMain_ucUserMessages_lblUserMessages"); }
-        }
-
-        public IWebElement Login_IDontHaveEmailidElement
+        private IWebElement Login_IDontHaveEmailidElement
         {
             get { return ById("ctl00_ContentMain_pbLogin_i2_i0_lnkNoEmail"); }
         }
-
-        public IWebElement Login_UsernameElement
+        private IWebElement Login_UsernameElement
         {
             get { return ById("ctl00_ContentMain_pbLogin_i2_i0_tbUsername1"); }
+        }
+
+        public IWebElement Login_UserErrorPageElement
+        {
+            get { return ById("ctl00_ContentMain_ucUserMessages_lblUserMessages"); }
         }
 
         #endregion
 
         #region Methods
 
-        private LoginPageModel FillLoginDetail(string username, string password)
+        private void FillLoginDetail(string username, string password)
         {
             ActionHelper.WaitUntil(Driver, UserNameElement);
 
             UserNameElement.Clear();
             PasswordElement.Clear();
             UserNameElement.SendKeys(username);
-            PasswordElement.SendKeys(password);
-
-            Thread.Sleep(AppConstant.SleepTime * 2);
-            return new LoginPageModel(Driver, BaseUri);
+            PasswordElement.SendKeys(password);            
         }
 
         private void FillUsername(string userName)
@@ -160,35 +156,30 @@ namespace KidCheckTest.PageModel
             Account_RefCompanySelectElement.Click();
         }
 
-        private HomePageModel SubmitLogin()
-        {
-            LoginElement.Click();
-            Thread.Sleep(AppConstant.SleepTime * 2);
-            return new HomePageModel(Driver, BaseUri);
-        }
-
         public HomePageModel InitiateLogin(string username, string password)
         {
-            return FillLoginDetail(username, password).SubmitLogin();
+            FillLoginDetail(username, password);
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
+            LoginElement.Click();
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
+            return new HomePageModel(Driver, BaseUri);
         }        
 
-        public LoginPageModel ClickCreateNewAccount()
+        public void ClickCreateNewAccount()
         {
             CreateNewAccountElement.Click();
-
             Thread.Sleep(AppConstant.SleepTime * 2);
-            return new LoginPageModel(Driver, BaseUri);
         }
 
-        public LoginPageModel ClickNeverUsedKidCheck()
+        public void ClickNeverUsedKidCheck()
         {
             NewAccountElement.Click();
-
             Thread.Sleep(AppConstant.SleepTime * 2);
-            return new LoginPageModel(Driver, BaseUri);
         }
 
-        public LoginPageModel FillNewKidCheckAccountDetails(SignupDetailsModel _signuopDetailsModel, bool fillUsername, bool fillRefOrg)
+        public void FillNewKidCheckAccountDetails(SignupDetailsModel _signuopDetailsModel, bool fillUsername, bool fillRefOrg)
         {
             Account_FirstNameElement.SendKeys(_signuopDetailsModel.Account_FirstName);
             Account_LastNameElement.SendKeys(_signuopDetailsModel.Account_Lastname);
@@ -214,16 +205,12 @@ namespace KidCheckTest.PageModel
             {
                 FillRefOrganization("cenn");
             }
-
-            return new LoginPageModel(Driver, BaseUri);
         }
 
-        public LoginPageModel Register()
+        public void Register()
         {
             Account_RegisterElement.Click();
-
             Thread.Sleep(AppConstant.SleepTime * 2);
-            return new LoginPageModel(Driver, BaseUri);
         }
 
         public HomePageModel AcceptEULA()

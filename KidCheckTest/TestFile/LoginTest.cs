@@ -14,12 +14,11 @@ using KidCheckTest.Helper;
 namespace KidCheckTest
 {
     [TestClass]
-    public class LoginTest : UiTestBase
+    public class LoginTest : UITestBase
     {
         IWebDriver driver = null;
         private LoginDetailsModel _loginDetails;
         private LoginDetailsModel _InvalidLoginDetails;
-        private SignupDetailsModel _signuopDetailsModel;
 
         [TestInitialize]
         public void Setup()
@@ -27,7 +26,6 @@ namespace KidCheckTest
             driver = GetDriver();
             _loginDetails = new LoginDetailsModel(UserRole.Administrator);
             _InvalidLoginDetails = new LoginDetailsModel();
-            _signuopDetailsModel = new SignupDetailsModel();
         }
 
         [TestCleanup]
@@ -107,65 +105,6 @@ namespace KidCheckTest
             Assert.AreEqual(loginPage.Login_UserErrorPageElement.Text, "The username you are attempting to use is temporarily disabled because of too many invalid login attempts. You can attempt another login in 11 minutes.\r\nYou can contact KidCheck support at 1-855-543-2432 to have this login unlocked.");
         }
 
-        [TestMethod]
-        public void CreateNewKidCheckAccountWithEmailIdLogin()
-        {
-            var loginPage = new LoginPageModel(driver, BaseUri);
-
-            HomePageModel homePage = loginPage.Load()
-                .ClickCreateNewAccount()
-                .ClickNeverUsedKidCheck()
-                .FillNewKidCheckAccountDetails(_signuopDetailsModel, false, false)
-                .Register()
-                .AcceptEULA();
-            
-            Assert.AreEqual(homePage.HomeTabElement.Text, "Home");
-        }
-
-        [TestMethod]
-        public void CreateNewKidCheckAccountWithUsernameLogin()
-        {
-            var loginPage = new LoginPageModel(driver, BaseUri);
-
-            HomePageModel homePage = loginPage.Load()
-                .ClickCreateNewAccount()
-                .ClickNeverUsedKidCheck()
-                .FillNewKidCheckAccountDetails(_signuopDetailsModel, true, false)
-                .Register()
-                .AcceptEULA();
-            
-            Assert.AreEqual(homePage.HomeTabElement.Text, "Home");
-        }
-
-        [TestMethod]
-        public void CreateNewKidCheckAccountWithrefOrg()
-        {
-            var loginPage = new LoginPageModel(driver, BaseUri);
-
-            HomePageModel homePage = loginPage.Load()
-                .ClickCreateNewAccount()
-                .ClickNeverUsedKidCheck()
-                .FillNewKidCheckAccountDetails(_signuopDetailsModel,false, true)
-                .Register()
-                .AcceptEULA();
-            
-            Assert.AreEqual(homePage.HomeTabElement.Text, "Home");
-        }
-
-        [TestMethod]
-        public void AccountCreationViaRegistrationAssistant()
-        {
-            var loginPage = new LoginPageModel(driver, BaseUri);
-
-            PreCheckinPageModel test = loginPage.Load()
-                .InitiateLogin(_loginDetails.UserName, _loginDetails.Password)
-                .ClickCheckinTab()
-                .ClickUtitlitiesTab()
-                .ClickRegistrationAssistantStartButton()
-                .FillRegistrationBasicInfoForNewUser(_signuopDetailsModel, false)
-                .ClickRegNext()
-                .FillRegistrationInfoForNewUser()
-                .ClickPrimaryGuardianNext();
-        }
+        
     }
 }

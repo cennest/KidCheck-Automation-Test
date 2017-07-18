@@ -16,7 +16,7 @@ namespace KidCheckTest.PageModel
 
         #region Elements
 
-        public IWebElement IAgreeElement
+        private IWebElement IAgreeElement
         {
             get { return ByXPath("//*[@id='ctl00_ContentMain_btnAgree_btnRadButton']"); }
         }

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace KidCheckTest.TestFile
 {
     [TestClass]
-    public class AccountHomeTest : UiTestBase
+    public class AccountHomeTest : UITestBase
     {
         IWebDriver driver = null;
         private LoginDetailsModel _loginDetails;
@@ -35,21 +35,20 @@ namespace KidCheckTest.TestFile
         {
             var loginPage = new LoginPageModel(driver, BaseUri);
 
-            MyAccountPageModel addNewKid = loginPage.Load()
+            MyAccountPageModel myAccountPage = loginPage.Load()
                 .InitiateLogin(_loginDetails.UserName, _loginDetails.Password)
-                .ClickMyAccountTab()
-                .ClickKidsTab()
-                .ClickAddNewKidLink();
+                .ClickMyAccountTab();
+
+            myAccountPage.ClickKidsTab();
+            myAccountPage.ClickAddNewKidLink();
 
             IList<IWebElement> row = driver.FindElements(By.XPath("//*[@id='ctl00_ContentMain_dgKids']" + " / tbody/tr[*]"));
 
             int initialRowCount = row.Count;
+            driver.SwitchTo().Frame(0);
 
-            driver.SwitchTo()
-                .Frame(0);
-
-            addNewKid.FillNewKidDetails(_addNewChild)
-                .SubmitNewKid();
+            myAccountPage.FillNewKidDetails(_addNewChild);
+            myAccountPage.SubmitNewKid();
 
             IList<IWebElement> rowAfterInsert = driver.FindElements(By.XPath("//*[@id='ctl00_ContentMain_dgKids']" + " / tbody/tr[*]"));
             

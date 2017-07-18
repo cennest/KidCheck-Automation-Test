@@ -11,12 +11,12 @@ using System.Drawing;
 
 namespace KidCheckTest.TestFile
 {
-    public class UiTestBase
+    public class UITestBase
     {
         protected Uri BaseUri;
         static string driverPath = AppDomain.CurrentDomain.BaseDirectory;  
 
-        public UiTestBase()
+        public UITestBase()
         {
             BaseUri = GetBaseUri();
         }

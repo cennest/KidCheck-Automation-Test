@@ -29,98 +29,87 @@ namespace KidCheckTest.PageModel
         #endregion
 
         #region AccountHomePage Element
-        
-        public IWebElement AddNewChildElement
+
+        private IWebElement AddNewChildElement
         {
             get { return ByXPath("//*[@id='ctl00_ContentMain_lnkAdd_Kids']"); }
         }
-        public IWebElement Child_FirstnameElement
+        private IWebElement Child_FirstnameElement
         {
             get { return ById("ctl00_WorkAreaPlaceholder_tbFirstName"); }
         }
-        public IWebElement Child_LastnameElement
+        private IWebElement Child_LastnameElement
         {
             get { return ById("ctl00_WorkAreaPlaceholder_tbLastName"); }
         }
-        public IWebElement Child_DOBElement
+        private IWebElement Child_DOBElement
         {
             get { return ById("ctl00_WorkAreaPlaceholder_tbBirthdate_dateInput"); }
         }
-        public IWebElement Child_MaleElement
+        private IWebElement Child_MaleElement
         {
             get { return ByXPath("//*[@id='ctl00_WorkAreaPlaceholder_rblGender_0']"); }
         }
-        public IWebElement Child_MedicalORAllergyElement
+        private IWebElement Child_MedicalORAllergyElement
         {
             get { return ById("ctl00_WorkAreaPlaceholder_tbMedicalInfo"); }
         }
-        public IWebElement Child_SubmitKidElement
+        private IWebElement Child_SubmitKidElement
         {
             get { return ById("ctl00_WorkAreaPlaceholder_lnkSave_btnRadButton"); }
         }
-        public IWebElement Account_KidBody
+        private IWebElement Account_KidBody
         {
             get { return ByXPath("//*[@id='ctl00_ContentMain_dgKids']/tbody"); }
         }
-        public IWebElement AddNewGuardianElement
+        private IWebElement AddNewGuardianElement
         {
             get { return ById("ctl00_ContentMain_lnkAdd"); }
         }
         #endregion
 
         #region Methods
-        
 
-        public MyAccountPageModel ClickKidsTab()
+
+        public void ClickKidsTab()
         {
             KidsTabElement.Click();
-
             Thread.Sleep(AppConstant.SleepTime * 2);
-            return new MyAccountPageModel(Driver, BaseUri);
         }
 
-        public MyAccountPageModel ClickAddNewKidLink()
+        public void ClickAddNewKidLink()
         {
             AddNewChildElement.Click();
-
             Thread.Sleep(AppConstant.SleepTime * 2);
-            return new MyAccountPageModel(Driver, BaseUri);
         }
 
-        public MyAccountPageModel FillNewKidDetails(AddNewChild _addNewChild)
+        public void FillNewKidDetails(AddNewChild _addNewChild)
         {
             Child_FirstnameElement.SendKeys(_addNewChild.Child_Firstname);
             Child_LastnameElement.SendKeys(_addNewChild.Child_Lastname);
             Child_DOBElement.SendKeys(_addNewChild.Child_DOB);
             Child_MaleElement.Click();
             Child_MedicalORAllergyElement.SendKeys(_addNewChild.Child_MedicalORAllergy);
-            return new MyAccountPageModel(Driver, BaseUri);
         }
 
-        public MyAccountPageModel SubmitNewKid()
+        public void SubmitNewKid()
         {
             Child_SubmitKidElement.Click();
-
             Thread.Sleep(AppConstant.SleepTime * 2);
-            return new MyAccountPageModel(Driver, BaseUri);
         }
 
-        public MyAccountPageModel ClickGuardianTab()
+        public void ClickGuardianTab()
         {
             GuardianTabElement.Click();
-
             Thread.Sleep(AppConstant.SleepTime * 2);
-            return new MyAccountPageModel(Driver, BaseUri);
         }
 
-        public MyAccountPageModel ClickAddNewGuardianLink()
+        public void ClickAddNewGuardianLink()
         {
             AddNewGuardianElement.Click();
-
             Thread.Sleep(AppConstant.SleepTime * 2);
-            return new MyAccountPageModel(Driver, BaseUri);
-        }        
-        
+        }
+
         #endregion
     }
 }

@@ -7,7 +7,7 @@ using KidCheckTest.PageModel;
 namespace KidCheckTest.TestFile
 {
     [TestClass]
-    public class InitialSetupTest : UiTestBase
+    public class InitialSetupTest : UITestBase
     {
         IWebDriver driver = null;
         private LoginDetailsModel _loginDetails;
@@ -32,6 +32,8 @@ namespace KidCheckTest.TestFile
             }
         }
 
+        #region SignUp
+
         [TestMethod]
         public void CreateNewAccountWithCustomerSetupWitEmail()
         {
@@ -40,15 +42,15 @@ namespace KidCheckTest.TestFile
 
             var signupPage = new SignupPageModel(driver, BaseUri);
 
-            SignupPageModel siginin = signupPage
-                .WelcomePage()
-                .FillNewAccountDetailsWithEmail(_signupDetails).ContinueToStep2()
-                .ContinueUsingSameLogin()
-                .FillChildCareOrgDetails(_childcareOrganizationDetailsModel)
-                .ContinueToStep3()
-                .KidcheckProductSelection()
-                .ContinueToStep4()
-                .Continue();
+            signupPage.ClickReadyToGo();
+            signupPage.FillNewAccountDetails(_signupDetails, false);
+            signupPage.ContinueToStep2();
+            signupPage.ContinueUsingSameLogin();
+            signupPage.FillChildCareOrgDetails(_childcareOrganizationDetailsModel);
+            signupPage.ContinueToStep3();
+            signupPage.KidcheckProductSelection();
+            signupPage.ContinueToStep4();
+            signupPage.Continue();
 
             driver.Navigate()
                 .GoToUrl(Helper.AppConstant.SignInURL);
@@ -69,16 +71,15 @@ namespace KidCheckTest.TestFile
 
             var signupPage = new SignupPageModel(driver, BaseUri);
 
-            SignupPageModel siginin = signupPage
-                .WelcomePage()
-                .FillNewAccountDetailsWithUser(_signupDetails)
-                .ContinueToStep2()
-                .ContinueUsingSameLogin()
-                .FillChildCareOrgDetails(_childcareOrganizationDetailsModel)
-                .ContinueToStep3()
-                .KidcheckProductSelection()
-                .ContinueToStep4()
-                .Continue();
+            signupPage.ClickReadyToGo();
+            signupPage.FillNewAccountDetails(_signupDetails, true);
+            signupPage.ContinueToStep2();
+            signupPage.ContinueUsingSameLogin();
+            signupPage.FillChildCareOrgDetails(_childcareOrganizationDetailsModel);
+            signupPage.ContinueToStep3();
+            signupPage.KidcheckProductSelection();
+            signupPage.ContinueToStep4();
+            signupPage.Continue();
 
             driver.Navigate()
                 .GoToUrl(Helper.AppConstant.SignInURL);
@@ -92,15 +93,72 @@ namespace KidCheckTest.TestFile
             Assert.AreEqual(homePage.HomeTabElement.Text, "Home");
         }
 
+        #endregion
+
+
         [TestMethod]
-        public void Login()
+        public void CreateNewKidCheckAccountWithEmailIdLogin()
         {
             var loginPage = new LoginPageModel(driver, BaseUri);
 
-            HomePageModel homePage = loginPage.Load()
-                .InitiateLogin(_loginDetails.UserName, _loginDetails.Password);
+            loginPage.Load()
+                .ClickCreateNewAccount();
+            loginPage.ClickNeverUsedKidCheck();
+            loginPage.FillNewKidCheckAccountDetails(_signupDetails, false, false);
+            loginPage.Register();
+
+            HomePageModel homePage = loginPage.AcceptEULA();
 
             Assert.AreEqual(homePage.HomeTabElement.Text, "Home");
+        }
+
+        [TestMethod]
+        public void CreateNewKidCheckAccountWithUsernameLogin()
+        {
+            var loginPage = new LoginPageModel(driver, BaseUri);
+
+            loginPage.Load()
+               .ClickCreateNewAccount();
+            loginPage.ClickNeverUsedKidCheck();
+            loginPage.FillNewKidCheckAccountDetails(_signupDetails, true, false);
+            loginPage.Register();
+
+            HomePageModel homePage = loginPage.AcceptEULA();
+
+            Assert.AreEqual(homePage.HomeTabElement.Text, "Home");
+        }
+
+        [TestMethod]
+        public void CreateNewKidCheckAccountWithrefOrg()
+        {
+            var loginPage = new LoginPageModel(driver, BaseUri);
+
+            loginPage.Load()
+                .ClickCreateNewAccount();
+            loginPage.ClickNeverUsedKidCheck();
+            loginPage.FillNewKidCheckAccountDetails(_signupDetails, false, true);
+            loginPage.Register();
+
+            HomePageModel homePage = loginPage.AcceptEULA();
+
+            Assert.AreEqual(homePage.HomeTabElement.Text, "Home");
+        }
+
+        [TestMethod]
+        public void AccountCreationViaRegistrationAssistant()
+        {
+            var loginPage = new LoginPageModel(driver, BaseUri);
+
+            PreCheckinPageModel preCheckinPage = loginPage.Load()
+                .InitiateLogin(_loginDetails.UserName, _loginDetails.Password)
+                .ClickCheckinTab()
+                .ClickUtitlitiesTab()
+                .ClickRegistrationAssistantStartButton();
+
+            preCheckinPage.FillRegistrationBasicInfo();
+            preCheckinPage.ClickRegNext();
+            preCheckinPage.FillNewUserDetails(false);
+            preCheckinPage.PrimaryGuardianNextClick();
         }
     }
 }

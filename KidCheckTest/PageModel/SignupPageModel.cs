@@ -28,181 +28,181 @@ namespace KidCheckTest.PageModel
         #endregion
 
         #region SignUp Elements
-        public IWebElement SignUpKidCheckElement
+        private IWebElement SignUpKidCheckElement
         {
             get { return ByClass("signup-green"); }
         }
 
-        public IWebElement WelcomeElement
+        private IWebElement WelcomeElement
         {
             get { return ByXPath("//*[@id='ctl00_ContentMain_ucWelcome_btnGoToStep1_btnRadButton']"); }
         }
 
-        public IWebElement Account_FirstNameElement
+        private IWebElement Account_FirstNameElement
         {
             get { return ById("ctl00_ContentMain_ucAccount_tbFirstName"); }
         }
 
-        public IWebElement Account_LastnameElement
+        private IWebElement Account_LastnameElement
         {
             get { return ById("ctl00_ContentMain_ucAccount_tbLastName"); }
         }
 
-        public IWebElement Account_EmailIDElement
+        private IWebElement Account_EmailIDElement
         {
             get { return ById("ctl00_ContentMain_ucAccount_tbEmail"); }
         }
 
-        public IWebElement Account_PasswordElement
+        private IWebElement Account_PasswordElement
         {
             get { return ById("ctl00_ContentMain_ucAccount_tbPassword1"); }
         }
 
-        public IWebElement Account_ConfirmPasswordElement
+        private IWebElement Account_ConfirmPasswordElement
         {
             get { return ById("ctl00_ContentMain_ucAccount_tbPassword2"); }
         }
 
-        public IWebElement Account_PhoneNumberElement
+        private IWebElement Account_PhoneNumberElement
         {
             get { return ById("ctl00_ContentMain_ucAccount_tbHomePhone"); }
         }
 
-        public IWebElement Account_MobileNumberElement
+        private IWebElement Account_MobileNumberElement
         {
             get { return ById("ctl00_ContentMain_ucAccount_tbCellPhone"); }
         }
 
-        public IWebElement ContinueToStep2Element
+        private IWebElement ContinueToStep2Element
         {
             get { return ById("ctl00_ContentMain_ucAccount_btnRegisterAccount_btnRadButton"); }
         }
 
-        public IWebElement ContinueUsingSameLoginElement
+        private IWebElement ContinueUsingSameLoginElement
         {
             get { return ById("ctl00_ContentMain_ucAccount_btnNextStep_btnRadButton"); }
         }
-        public IWebElement Account_OrganizationNameElement
+        private IWebElement Account_OrganizationNameElement
         {
             get { return ById("ctl00_ContentMain_ucOrganization_tbCustomerName"); }
         }
 
-        public IWebElement Account_WebsiteElement
+        private IWebElement Account_WebsiteElement
         {
             get { return ById("ctl00_ContentMain_ucOrganization_tbWebSite"); }
         }
 
-        public IWebElement Account_MainPhoneNumberElement
+        private IWebElement Account_MainPhoneNumberElement
         {
             get { return ById("ctl00_ContentMain_ucOrganization_tbPhone"); }
         }
-        public IWebElement Account_MailingAddressElement
+        private IWebElement Account_MailingAddressElement
         {
             get { return ById("ctl00_ContentMain_ucOrganization_ucAddress_tbAddress"); }
         }
-        public IWebElement Account_CityElement
+        private IWebElement Account_CityElement
         {
             get { return ById("ctl00_ContentMain_ucOrganization_ucAddress_tbCity"); }
         }
 
-        public IWebElement Account_PostalCodeElement
+        private IWebElement Account_PostalCodeElement
         {
             get { return ById("ctl00_ContentMain_ucOrganization_ucAddress_tbPostalCode"); }
         }
 
-        public IWebElement Account_OrgClassificationDropDownElement
+        private IWebElement Account_OrgClassificationDropDownElement
         {
             get { return ByName("ctl00$ContentMain$ucOrganization$ddBusinessClassification"); }
         }
-        public IWebElement Account_OrgClassificationSelectedDropDownElement
+        private IWebElement Account_OrgClassificationSelectedDropDownElement
         {
             get { return ByXPath("//*[@id='ctl00_ContentMain_ucOrganization_ddBusinessClassification_DropDown']/div/ul/li[1]"); }
         }
 
-        public IWebElement Account_OrgTypeDropDownElement
+        private IWebElement Account_OrgTypeDropDownElement
         {
             get { return ByName("ctl00$ContentMain$ucOrganization$ddCustomerType"); }
         }
-        public IWebElement Account_OrgTypeSelectedDropDownElement
+        private IWebElement Account_OrgTypeSelectedDropDownElement
         {
             get { return ByXPath("//*[@id='ctl00_ContentMain_ucOrganization_ddCustomerType_DropDown']/div/ul/li[2]"); }
         }
 
-        public IWebElement Account_StateDropDownElement
+        private IWebElement Account_StateDropDownElement
         {
             get { return ByName("ctl00$ContentMain$ucOrganization$ucAddress$cbStateID"); }
         }
-        public IWebElement Account_StateSelectedDropDownElement
+        private IWebElement Account_StateSelectedDropDownElement
         {
             get { return ByXPath("//*[@id='ctl00_ContentMain_ucOrganization_ucAddress_cbStateID_DropDown']/div/ul/li[6]"); }
         }
 
-        public IWebElement Account_CountryDropDownElement
+        private IWebElement Account_CountryDropDownElement
         {
             get { return ByName("ctl00$ContentMain$ucOrganization$ucAddress$cbCountryID"); }
         }
-        public IWebElement Account_CountrySelectedDropDownElement
+        private IWebElement Account_CountrySelectedDropDownElement
         {
             // get { return ByXPath("//*[@id='ctl00_ContentMain_ucOrganization_ucAddress_cbCountryID_DropDown']/div/ul/li[14]"); }
             get { return ByXPath("//*[@id='ctl00_ContentMain_ucOrganization_ucAddress_cbCountryID_DropDown']/div/ul/li[13]"); }
         }
 
-        public IWebElement Account_TimeZoneDropDownElement
+        private IWebElement Account_TimeZoneDropDownElement
         {
             get { return ByName("ctl00$ContentMain$ucOrganization$ddTimeZoneID"); }
         }
-        public IWebElement Account_TimeZoneSelectedDropDownElement
+        private IWebElement Account_TimeZoneSelectedDropDownElement
         {
             get { return ByXPath("//*[@id='ctl00_ContentMain_ucOrganization_ddTimeZoneID_DropDown']/div/ul/li[6]"); }
         }
-        public IWebElement ContinueToStep3Element
+        private IWebElement ContinueToStep3Element
         {
             get { return ById("ctl00_ContentMain_ucOrganization_btnNextStep_btnRadButton"); }
         }
 
-        public IWebElement Account_ProductEditionDropDownElement
+        private IWebElement Account_ProductEditionDropDownElement
         {
             get { return ByName("ctl00$ContentMain$ucProduct$ddProductCode"); }
         }
-        public IWebElement Account_ProductEditionSelectedDropDownElement
+        private IWebElement Account_ProductEditionSelectedDropDownElement
         {
             get { return ByXPath("//*[@id='ctl00_ContentMain_ucProduct_ddProductCode_DropDown']/div/ul/li[1]"); }
         }
-        public IWebElement Account_StationSelectedElement
+        private IWebElement Account_StationSelectedElement
         {
             get { return ByXPath("//*[@id='ctl00_ContentMain_ucProduct_tbCheckinLicenses_SpinUpButton']"); }
         }
-        public IWebElement Account_PaymentTypeDropDownElement
+        private IWebElement Account_PaymentTypeDropDownElement
         {
             get { return ByName("ctl00$ContentMain$ucProduct$ddPaymentType"); }
         }
-        public IWebElement Account_PaymentTypeSelectedDropDownElement
+        private IWebElement Account_PaymentTypeSelectedDropDownElement
         {
             get { return ByXPath("//*[@id='ctl00_ContentMain_ucProduct_ddPaymentType_DropDown']/div/ul/li[1]"); }
         }
-        public IWebElement Account_SalesRepDropDownElement
+        private IWebElement Account_SalesRepDropDownElement
         {
             get { return ByName("ctl00$ContentMain$ucProduct$ddSalesRep"); }
         }
-        public IWebElement Account_SalesRepSelectedDropDownElement
+        private IWebElement Account_SalesRepSelectedDropDownElement
         {
             get { return ByXPath("//*[@id='ctl00_ContentMain_ucProduct_ddSalesRep_DropDown']/div/ul/li[1]"); }
         }
 
-        public IWebElement ContinueToStep4Element
+        private IWebElement ContinueToStep4Element
         {
             get { return ById("ctl00_ContentMain_ucProduct_btnNextStep_btnRadButton"); }
         }
 
-        public IWebElement ContinueElement
+        private IWebElement ContinueElement
         {
             get { return ById("ctl00_ContentMain_ucSummary_btnNextStep_btnRadButton"); }
         }
-        public IWebElement Account_IDontHaveEmailElement
+        private IWebElement Account_IDontHaveEmailElement
         {
             get { return ById("ctl00_ContentMain_ucAccount_lnkNoEmail"); }
         }
-        public IWebElement Account_UsernameElement
+        private IWebElement Account_UsernameElement
         {
             get { return ById("ctl00_ContentMain_ucAccount_tbUsername1"); }
         }
@@ -218,60 +218,47 @@ namespace KidCheckTest.PageModel
             return new SignupPageModel(Driver, BaseUri);
         }
 
-        public SignupPageModel WelcomePage()
+        public void ClickReadyToGo()
         {
             //WebDriverWait wait = new WebDriverWait(Driver,TimeSpan.FromSeconds(1));
             //wait.Until(ExpectedConditions.ElementIsVisible(WelcomeElement)).click();
 
             Thread.Sleep(AppConstant.SleepTime * 5);
             WelcomeElement.Click();
-
             Thread.Sleep(AppConstant.SleepTime * 2);
-            return new SignupPageModel(Driver, BaseUri);
         }
 
-        public SignupPageModel FillNewAccountDetailsWithEmail(SignupDetailsModel _signupDetail)
+        public void FillNewAccountDetails(SignupDetailsModel _signupDetail, bool fillUserName)
         {
             Account_FirstNameElement.SendKeys(_signupDetail.Account_FirstName);
             Account_LastnameElement.SendKeys(_signupDetail.Account_Lastname);
             Account_EmailIDElement.SendKeys(_signupDetail.Account_EmailID);
+
+            if (fillUserName)
+            {
+                Account_IDontHaveEmailElement.Click();
+                Account_UsernameElement.SendKeys(_signupDetail.Account_UserName);
+            }
+
             Account_PasswordElement.SendKeys(_signupDetail.Account_Password);
             Account_ConfirmPasswordElement.SendKeys(_signupDetail.Account_ConfirmPassword);
             Account_PhoneNumberElement.SendKeys(_signupDetail.Account_PhoneNumber);
             Account_MobileNumberElement.SendKeys(_signupDetail.Account_MobileNumber);
-            return new SignupPageModel(Driver, BaseUri);
         }
 
-        public SignupPageModel FillNewAccountDetailsWithUser(SignupDetailsModel _signupDetail)
-        {
-            Account_FirstNameElement.SendKeys(_signupDetail.Account_FirstName);
-            Account_LastnameElement.SendKeys(_signupDetail.Account_Lastname);
-            Account_IDontHaveEmailElement.Click();
-            Account_UsernameElement.SendKeys(_signupDetail.Account_UserName);
-            Account_PasswordElement.SendKeys(_signupDetail.Account_Password);
-            Account_ConfirmPasswordElement.SendKeys(_signupDetail.Account_ConfirmPassword);
-            Account_PhoneNumberElement.SendKeys(_signupDetail.Account_PhoneNumber);
-            Account_MobileNumberElement.SendKeys(_signupDetail.Account_MobileNumber);
-            return new SignupPageModel(Driver, BaseUri);
-        }
-
-        public SignupPageModel ContinueToStep2()
+        public void ContinueToStep2()
         {
             ContinueToStep2Element.Click();
-
             Thread.Sleep(AppConstant.SleepTime * 2);
-            return new SignupPageModel(Driver, BaseUri);
         }
 
-        public SignupPageModel ContinueUsingSameLogin()
+        public void ContinueUsingSameLogin()
         {
             ContinueUsingSameLoginElement.Click();
-
             Thread.Sleep(AppConstant.SleepTime * 2);
-            return new SignupPageModel(Driver, BaseUri);
         }
 
-        public SignupPageModel FillChildCareOrgDetails(ChildcareOrganizationDetailsModel childcareOrganizationDetailsModel)
+        public void FillChildCareOrgDetails(ChildcareOrganizationDetailsModel childcareOrganizationDetailsModel)
         {
             Account_OrganizationNameElement.SendKeys(childcareOrganizationDetailsModel.Childcare_OrganizationName);
             Account_OrgClassificationDropDownElement.Click();
@@ -313,18 +300,15 @@ namespace KidCheckTest.PageModel
             Account_TimeZoneSelectedDropDownElement.Click();
 
             Thread.Sleep(AppConstant.SleepTime * 2);
-            return new SignupPageModel(Driver, BaseUri);
         }
 
-        public SignupPageModel ContinueToStep3()
+        public void ContinueToStep3()
         {
             ContinueToStep3Element.Click();
-
             Thread.Sleep(AppConstant.SleepTime * 2);
-            return new SignupPageModel(Driver, BaseUri);
         }
 
-        public SignupPageModel KidcheckProductSelection()
+        public void KidcheckProductSelection()
         {
             Account_ProductEditionDropDownElement.Click();
 
@@ -345,23 +329,18 @@ namespace KidCheckTest.PageModel
 
             Thread.Sleep(AppConstant.SleepTime * 2);
             Account_SalesRepSelectedDropDownElement.Click();
-            return new SignupPageModel(Driver, BaseUri);
         }
 
-        public SignupPageModel ContinueToStep4()
+        public void ContinueToStep4()
         {
             ContinueToStep4Element.Click();
-
             Thread.Sleep(AppConstant.SleepTime * 2);
-            return new SignupPageModel(Driver, BaseUri);
         }
 
-        public SignupPageModel Continue()
+        public void Continue()
         {
             ContinueElement.Click();
-
             Thread.Sleep(AppConstant.SleepTime * 2);
-            return new SignupPageModel(Driver, BaseUri);
         }
 
         #endregion

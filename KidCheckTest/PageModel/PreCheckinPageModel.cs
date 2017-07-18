@@ -34,84 +34,84 @@ namespace KidCheckTest.PageModel
         {
             get { return ById("ctl00_ContentMain_tbHomePhone"); }
         }
-        public IWebElement CellPhoneElement
+        private IWebElement CellPhoneElement
         {
             get { return ById("ctl00_ContentMain_tbCellPhone"); }
         }
-        public IWebElement EmailIdElement
+        private IWebElement EmailIdElement
         {
             get { return ById("ctl00_ContentMain_tbEmailAddress"); }
         }
-        public IWebElement NextElement
+        private IWebElement NextElement
         {
             get { return ById("ctl00_ContentMain_tdNext"); }
         }
 
-        public IWebElement PrimaryGuardian_FirstnameElement
+        private IWebElement PrimaryGuardian_FirstnameElement
         {
             get { return ById("ctl00_ContentMain_ucPrimaryGuardian_tbFirstName"); }
         }
-        public IWebElement PrimaryGuardian_LastnameElement
+        private IWebElement PrimaryGuardian_LastnameElement
         {
             get { return ById("ctl00_ContentMain_ucPrimaryGuardian_tbLastName"); }
         }
-        public IWebElement PrimaryGuardian_AddressElement
+        private IWebElement PrimaryGuardian_AddressElement
         {
             get { return ById("ctl00_ContentMain_ucPrimaryGuardian_ucPersonAddress_tbAddress"); }
         }
-        public IWebElement PrimaryGuardian_CityElement
+        private IWebElement PrimaryGuardian_CityElement
         {
             get { return ById("ctl00_ContentMain_ucPrimaryGuardian_ucPersonAddress_tbCity"); }
         }
-        public IWebElement PrimaryGuardian_StateElement
+        private IWebElement PrimaryGuardian_StateElement
         {
             get { return ById("ctl00_ContentMain_ucPrimaryGuardian_ucPersonAddress_cbStateID"); }
         }
-        public IWebElement PrimaryGuardian_SelectedStateElement
+        private IWebElement PrimaryGuardian_SelectedStateElement
         {
             get { return ByXPath("//*[@id='ctl00_ContentMain_ucPrimaryGuardian_ucPersonAddress_cbStateID_DropDown']/div/ul/li[8]"); }
         }
-        public IWebElement PrimaryGuardian_PostalCode
+        private IWebElement PrimaryGuardian_PostalCode
         {
             get { return ById("ctl00_ContentMain_ucPrimaryGuardian_ucPersonAddress_tbPostalCode"); }
         }
-        public IWebElement PrimaryGuardian_CountryElement
+        private IWebElement PrimaryGuardian_CountryElement
         {
             get { return ById("ctl00_ContentMain_ucPrimaryGuardian_ucPersonAddress_cbCountryID"); }
         }
-        public IWebElement PrimaryGuardian_SelectedCountryElement
+        private IWebElement PrimaryGuardian_SelectedCountryElement
         {
             get { return ByXPath("//*[@id='ctl00_ContentMain_ucPrimaryGuardian_ucPersonAddress_cbCountryID_DropDown']/div/ul/li[13]"); }
         }
-        public IWebElement PrimaryGuardian_HomePhoneElement
+        private IWebElement PrimaryGuardian_HomePhoneElement
         {
             get { return ById("ctl00_ContentMain_ucPrimaryGuardian_tbHomePhone"); }
         }
-        public IWebElement PrimaryGuardian_EmailID
+        private IWebElement PrimaryGuardian_EmailID
         {
             get { return ById("ctl00_ContentMain_ucPrimaryGuardian_tbEmailAddress"); }
         }
-        public IWebElement PrimaryGuardian_CellPhoneElement
+        private IWebElement PrimaryGuardian_CellPhoneElement
         {
             get { return ById("ctl00_ContentMain_ucPrimaryGuardian_tbCellPhone"); }
         }
-        public IWebElement PrimaryGuardian_CellphoneCarrierElement
+        private IWebElement PrimaryGuardian_CellphoneCarrierElement
         {
             get { return ById("ctl00_ContentMain_ucPrimaryGuardian_cbSMS_CarrierID_Arrow"); }
         }
-        public IWebElement PrimaryGuardian_SelectedCellphoneCompanyElement
+        private IWebElement PrimaryGuardian_SelectedCellphoneCompanyElement
         {
             get { return ByXPath("//*[@id='ctl00_ContentMain_ucPrimaryGuardian_cbSMS_CarrierID_DropDown']/div/ul/li[61]"); }
         }
-        public IWebElement PrimaryGuardian_UsernameElement
+        private IWebElement PrimaryGuardian_UsernameElement
         {
             get { return ById("ctl00_ContentMain_tbUsername"); }
         }
-        public IWebElement PrimaryGuardian_PasswordElement
+        private IWebElement PrimaryGuardian_PasswordElement
         {
             get { return ById("ctl00_ContentMain_tbPassword"); }
         }
-        public IWebElement PrimaryGuardian_NextElement
+        private IWebElement PrimaryGuardian_NextElement
         {
             get { return ById("ctl00_ContentMain_lnkNext_btnRadButton"); }
         }
@@ -120,40 +120,21 @@ namespace KidCheckTest.PageModel
 
         #region Methods        
 
-        public PreCheckinPageModel FillRegistrationBasicInfoForNewUser(SignupDetailsModel _newUserDetails, bool includeLogin)
+        public void FillRegistrationBasicInfo()
         {
-            regNewUserDetails.Account_FirstName = _newUserDetails.Account_FirstName;
-            regNewUserDetails.Account_Lastname = _newUserDetails.Account_Lastname;
-            regNewUserDetails.Account_PhoneNumber = _newUserDetails.Account_PhoneNumber;
-            regNewUserDetails.Account_EmailID = _newUserDetails.Account_EmailID;
-            regNewUserDetails.Account_MobileNumber = _newUserDetails.Account_MobileNumber;
-            regNewUserDetails.Account_MailingAddress = _newUserDetails.Account_MailingAddress;
-            regNewUserDetails.Account_City = _newUserDetails.Account_City;
-            regNewUserDetails.Account_PostalCode = _newUserDetails.Account_PostalCode;
-
-            if (includeLogin)
-            {
-                regNewUserDetails.Account_UserName = _newUserDetails.Account_UserName;
-                regNewUserDetails.Account_Password = _newUserDetails.Account_Password;
-            }
-
             HomePhoneElement.SendKeys(regNewUserDetails.Account_PhoneNumber);
             CellPhoneElement.SendKeys(regNewUserDetails.Account_MobileNumber);
             EmailIdElement.SendKeys(regNewUserDetails.Account_EmailID);
-
             Thread.Sleep(AppConstant.SleepTime * 2);
-            return new PreCheckinPageModel(Driver, BaseUri);
         }
 
-        public PreCheckinPageModel ClickRegNext()
+        public void ClickRegNext()
         {
             NextElement.Click();
-
             Thread.Sleep(AppConstant.SleepTime * 2);
-            return new PreCheckinPageModel(Driver, BaseUri);
         }
 
-        public PreCheckinPageModel FillRegistrationInfoForNewUser()
+        public void FillNewUserDetails(bool createLogin)
         {
             PrimaryGuardian_FirstnameElement.SendKeys(regNewUserDetails.Account_UserName);
             PrimaryGuardian_LastnameElement.SendKeys(regNewUserDetails.Account_Lastname);
@@ -179,19 +160,19 @@ namespace KidCheckTest.PageModel
             Thread.Sleep(AppConstant.SleepTime * 2);
             PrimaryGuardian_SelectedCellphoneCompanyElement.Click();
 
-            PrimaryGuardian_UsernameElement.SendKeys(regNewUserDetails.Account_UserName);
-            PrimaryGuardian_PasswordElement.SendKeys(regNewUserDetails.Account_Password);
+            if (createLogin)
+            {
+                PrimaryGuardian_UsernameElement.SendKeys(regNewUserDetails.Account_UserName);
+                PrimaryGuardian_PasswordElement.SendKeys(regNewUserDetails.Account_Password);
+            }
 
             Thread.Sleep(AppConstant.SleepTime * 4);
-            return new PreCheckinPageModel(Driver, BaseUri);
         }
 
-        public PreCheckinPageModel ClickPrimaryGuardianNext()
+        public void PrimaryGuardianNextClick()
         {
             PrimaryGuardian_NextElement.Click();
-
             Thread.Sleep(AppConstant.SleepTime * 2);
-            return new PreCheckinPageModel(Driver, BaseUri);
         }
 
 
