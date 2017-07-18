@@ -148,6 +148,39 @@ namespace KidCheckTest.PageModel
         }
         #endregion
 
+        #region Tab Elements
+        public IWebElement HomeTabElement
+        {
+            get { return ByXPath("//*[@id='homeTab']/span/span"); }
+        }
+
+        public IWebElement MyAccountTabElement
+        {
+            get { return ByXPath("//*[@id='MyAccountTab']/span/span/span"); }
+        }
+
+        public IWebElement KidsTabElement
+        {
+            get { return ByXPath("//*[@id='KidsTab']/span/span"); }
+        }
+
+        public IWebElement GuardianTabElement
+        {
+            get { return ById("GuardiansTab"); }
+        }
+
+        public IWebElement CheckInTabElement
+        {
+            get { return ById("CheckinTab"); }
+        }
+        public IWebElement UtilitiesTabElement
+        {
+            get { return ById("AdminConsoleTab"); }
+        }
+
+
+        #endregion
+
         #region Methods 
         public void ReloadPage()
         {

@@ -108,7 +108,7 @@ namespace KidCheckTest.PageModel
         {
             get { return ById("ctl00_ContentMain_pbLogin_i2_i0_btnRegister_btnRadButton"); }
         }
-        public IWebElement Account_IAgreeElement
+        public IWebElement EULA_IAgreeElement
         {
             get { return ById("ctl00_ContentMain_btnAgree_btnRadButton"); }
         }
@@ -157,12 +157,11 @@ namespace KidCheckTest.PageModel
             return new LoginPageModel(Driver, BaseUri);
         }
 
-        public AccountHomePageModel SubmitLogin()
+        public HomePageModel SubmitLogin()
         {
             LoginElement.Click();
-
             Thread.Sleep(AppConstant.SleepTime * 2);
-            return new AccountHomePageModel(Driver, BaseUri);
+            return new HomePageModel(Driver, BaseUri);
         }
 
         public LoginPageModel ClickCreateNewKidCheckAccount()
@@ -253,12 +252,12 @@ namespace KidCheckTest.PageModel
             return new LoginPageModel(Driver, BaseUri);
         }
 
-        public AccountHomePageModel IAgree()
+        public HomePageModel AcceptEULA()
         {
-            Account_IAgreeElement.Click();
+            EULA_IAgreeElement.Click();
 
             Thread.Sleep(AppConstant.SleepTime * 2);
-            return new AccountHomePageModel(Driver, BaseUri);
+            return new HomePageModel(Driver, BaseUri);
         }
         #endregion
     }

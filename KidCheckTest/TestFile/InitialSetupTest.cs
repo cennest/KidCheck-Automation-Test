@@ -59,7 +59,7 @@ namespace KidCheckTest.TestFile
             driver.Navigate().GoToUrl(Helper.AppConstant.SignInURL);
 
             var loginPage = new LoginPageModel(driver, BaseUri);
-            AccountHomePageModel homePage = loginPage
+            HomePageModel homePage = loginPage
                 /*.InitiateLogin()*/
                 .FillLoginDetail(_signupDetails.Account_EmailID, _signupDetails.Account_Password)
                 .SubmitLogin()
@@ -77,9 +77,6 @@ namespace KidCheckTest.TestFile
                 .GoToUrl(Helper.AppConstant.SignUpURL);
 
             SignupPageModel siginin = signupPage
-                /*.Load()
-                 * .InitiateSignUp()
-                 * .InitiateKidCheckSignUP()*/
                 .WelcomePage()
                  .FillNewAccountDetailsWithUser(_signupDetails);
 
@@ -96,8 +93,7 @@ namespace KidCheckTest.TestFile
 
             var loginPage = new LoginPageModel(driver, BaseUri);
 
-            AccountHomePageModel homePage = loginPage
-                /*.InitiateLogin()*/
+            HomePageModel homePage = loginPage
                 .FillLoginDetail(_signupDetails.Account_UserName, _signupDetails.Account_Password)
                 .SubmitLogin()
                 .ClickIAgree();
@@ -111,8 +107,7 @@ namespace KidCheckTest.TestFile
         {
             var loginPage = new LoginPageModel(driver, BaseUri);
 
-            AccountHomePageModel homePage = loginPage.Load()
-                /*.InitiateLogin()*/
+            HomePageModel homePage = loginPage.Load()
                 .FillLoginDetail(_adminLoginDetails.UserName, _adminLoginDetails.Password)
                 .SubmitLogin();
 

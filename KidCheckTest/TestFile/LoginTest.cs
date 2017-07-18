@@ -44,7 +44,7 @@ namespace KidCheckTest
         public void LoginWithUserName()
         {
             var loginPage = new LoginPageModel(driver, BaseUri);
-            AccountHomePageModel homePage = loginPage.Load()
+            HomePageModel homePage = loginPage.Load()
                 /*.InitiateLogin()*/
                 .FillLoginDetail(_adminLoginDetails.UserName, _adminLoginDetails.Password)
                 .SubmitLogin();
@@ -57,7 +57,7 @@ namespace KidCheckTest
         public void LoginWithEmailID()
         {
             var loginPage = new LoginPageModel(driver, BaseUri);
-            AccountHomePageModel homePage = loginPage.Load()
+            HomePageModel homePage = loginPage.Load()
                 /*.InitiateLogin()*/
                 .FillLoginDetail(_kidCheckAdminLoginDetails.UserName, _kidCheckAdminLoginDetails.Password)
                 .SubmitLogin();
@@ -130,13 +130,13 @@ namespace KidCheckTest
         public void CreateNewKidCheckAccountWithEmailIdLogin()
         {
             var loginPage = new LoginPageModel(driver, BaseUri);
-            AccountHomePageModel homePage = loginPage.Load()
+            HomePageModel homePage = loginPage.Load()
                 /*.InitiateLogin()*/
                 .ClickCreateNewKidCheckAccount()
                 .ClickNeverUsedKidCheck()
                 .FillNewKidCheckAccountDetailForEmailLogin(_signuopDetailsModel)
                 .Register()
-                .IAgree();
+                .AcceptEULA();
 
             string homeElementText = homePage.HomeTabElement.Text;
             Assert.AreEqual(homeElementText, "Home");
@@ -146,13 +146,13 @@ namespace KidCheckTest
         public void CreateNewKidCheckAccountWithUsernameLogin()
         {
             var loginPage = new LoginPageModel(driver, BaseUri);
-            AccountHomePageModel homePage = loginPage.Load()
+            HomePageModel homePage = loginPage.Load()
                 /*.InitiateLogin()*/
                 .ClickCreateNewKidCheckAccount()
                 .ClickNeverUsedKidCheck()
                 .FillNewKidCheckAccountDetailForUsernameLogin(_signuopDetailsModel)
                 .Register()
-                .IAgree();
+                .AcceptEULA();
 
             string homeElementText = homePage.HomeTabElement.Text;
             Assert.AreEqual(homeElementText, "Home");
@@ -162,13 +162,13 @@ namespace KidCheckTest
         public void CreateNewKidCheckAccountWithrefOrg()
         {
             var loginPage = new LoginPageModel(driver, BaseUri);
-            AccountHomePageModel homePage = loginPage.Load()
+            HomePageModel homePage = loginPage.Load()
                 /*.InitiateLogin()*/
                 .ClickCreateNewKidCheckAccount()
                 .ClickNeverUsedKidCheck()
                 .FillNewKidCheckAccountDetailRefOrg(_signuopDetailsModel)
                 .Register()
-                .IAgree();
+                .AcceptEULA();
 
             string homeElementText = homePage.HomeTabElement.Text;
             Assert.AreEqual(homeElementText, "Home");

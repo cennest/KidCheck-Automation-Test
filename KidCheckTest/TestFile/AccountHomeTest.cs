@@ -39,13 +39,13 @@ namespace KidCheckTest.TestFile
         {
             var loginPage = new LoginPageModel(driver, BaseUri);
 
-            AccountHomePageModel addNewKid = loginPage.Load()
+            MyAccountPageModel addNewKid = loginPage.Load()
                 /*.InitiateLogin()*/
                 .FillLoginDetail(_adminLoginDetails.UserName, _adminLoginDetails.Password)
                 .SubmitLogin()
-                .ClickMyAccount()
-                .ClickKids()
-                .ClickAddNewKid();
+                .ClickMyAccountTab()
+                .ClickKidsTab()
+                .ClickAddNewKidLink();
 
             IList<IWebElement> row = driver.FindElements(By.XPath("//*[@id='ctl00_ContentMain_dgKids']" + " / tbody/tr[*]"));
 
@@ -75,13 +75,13 @@ namespace KidCheckTest.TestFile
         {
             var loginPage = new LoginPageModel(driver, BaseUri);
 
-            AccountHomePageModel test = loginPage.Load()
+            PreCheckinPageModel test = loginPage.Load()
                 .FillLoginDetail(_adminLoginDetails.UserName, _adminLoginDetails.Password)
                 .SubmitLogin()
-                .ClickCheckin()
-                .ClickUtitlities()
-                .ClickRegistrationAssistantStart()
-                .FillRegistrationBasicInfoForNewUser(_newUserDetails, true)
+                .ClickCheckinTab()
+                .ClickUtitlitiesTab()
+                .ClickRegistrationAssistantStartButton()
+                .FillRegistrationBasicInfoForNewUser(_newUserDetails, false)
                 .ClickRegNext()
                 .FillRegistrationInfoForNewUser()
                 .ClickPrimaryGuardianNext();
