@@ -14,36 +14,39 @@ namespace KidCheckTest.PageModel
         }
         #endregion
 
+        #region Elements
 
-        #region Home Page Elements
-        public IWebElement LoginButtonElement
+        private IWebElement IAgreeElement
         {
-            get { return ByLink("Login"); }
+            get { return ByXPath("//*[@id='ctl00_ContentMain_btnAgree_btnRadButton']"); }
         }
 
-        public IWebElement SignUpButtonElement
-        {
-            get { return ByLink("Sign Up"); }
-        }
-      
         #endregion
 
         #region Methods
-        public SignupPageModel InitiateSignUp()
+
+        public MyAccountPageModel ClickMyAccountTab()
         {
-            SignUpButtonElement.Click();
+            MyAccountTabElement.Click();
 
             Thread.Sleep(AppConstant.SleepTime * 2);
-            return new SignupPageModel(Driver, BaseUri);
+            return new MyAccountPageModel(Driver, BaseUri);
         }
 
-        public LoginPageModel InitiateLogin()
+        public CheckinPageModel ClickCheckinTab()
         {
-            LoginButtonElement.Click();
+            CheckInTabElement.Click();
 
             Thread.Sleep(AppConstant.SleepTime * 2);
-            return new LoginPageModel(Driver, BaseUri);
-        }      
+            return new CheckinPageModel(Driver, BaseUri);
+        }
+
+        public HomePageModel ClickIAgree()
+        {
+            IAgreeElement.Click();
+            Thread.Sleep(AppConstant.SleepTime * 2);
+            return new HomePageModel(Driver, BaseUri);
+        }
 
         #endregion
     }

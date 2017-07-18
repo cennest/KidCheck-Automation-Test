@@ -9,26 +9,23 @@ using System.Linq;
 using KidCheckTest.DetailModel;
 using KidCheckTest.TestFile;
 using KidCheckTest.PageModel;
+using KidCheckTest.Helper;
 
 namespace KidCheckTest
 {
     [TestClass]
-    public class LoginTest : UiTestBase
+    public class LoginTest : UITestBase
     {
         IWebDriver driver = null;
-        private LoginDetailsModel _adminLoginDetails;
-        private LoginDetailsModel _kidCheckAdminLoginDetails;
+        private LoginDetailsModel _loginDetails;
         private LoginDetailsModel _InvalidLoginDetails;
-        private SignupDetailsModel _signuopDetailsModel;
 
         [TestInitialize]
         public void Setup()
         {
             driver = GetDriver();
-            _adminLoginDetails = new LoginDetailsModel(UserRole.Administrator);
-            _kidCheckAdminLoginDetails = new LoginDetailsModel(UserRole.KidCheckAdmin);
+            _loginDetails = new LoginDetailsModel(UserRole.Administrator);
             _InvalidLoginDetails = new LoginDetailsModel();
-            _signuopDetailsModel = new SignupDetailsModel();
         }
 
         [TestCleanup]
@@ -44,10 +41,8 @@ namespace KidCheckTest
         public void LoginWithUserName()
         {
             var loginPage = new LoginPageModel(driver, BaseUri);
-            AccountHomePageModel homePage = loginPage.Load()
-                /*.InitiateLogin()*/
-                .FillLoginDetail(_adminLoginDetails.UserName, _adminLoginDetails.Password)
-                .SubmitLogin();
+            HomePageModel homePage = loginPage.Load()
+                .InitiateLogin(_loginDetails.UserName, _loginDetails.Password);
 
             string homeElementText = homePage.HomeTabElement.Text;
             Assert.AreEqual(homeElementText, "Home");
@@ -57,13 +52,10 @@ namespace KidCheckTest
         public void LoginWithEmailID()
         {
             var loginPage = new LoginPageModel(driver, BaseUri);
-            AccountHomePageModel homePage = loginPage.Load()
-                /*.InitiateLogin()*/
-                .FillLoginDetail(_kidCheckAdminLoginDetails.UserName, _kidCheckAdminLoginDetails.Password)
-                .SubmitLogin();
-
-            string homeElementText = homePage.HomeTabElement.Text;
-            Assert.AreEqual(homeElementText, "Home");
+            HomePageModel homePage = loginPage.Load()
+                .InitiateLogin(_loginDetails.UserName, _loginDetails.Password);
+            
+            Assert.AreEqual(homePage.HomeTabElement.Text, "Home");
         }
 
         [TestMethod]
@@ -71,12 +63,9 @@ namespace KidCheckTest
         {
             var loginPage = new LoginPageModel(driver, BaseUri);
             loginPage.Load()
-                /*.InitiateLogin()*/
-                .FillLoginDetail(_InvalidLoginDetails.UserName, _InvalidLoginDetails.Password)
-                .SubmitLogin();
-
-            string errorText = loginPage.Login_UserErrorPageElement.Text;
-            Assert.AreEqual(errorText, "The credentials you entered are invalid. Please re-enter your username and password.");
+                .InitiateLogin(_InvalidLoginDetails.UserName, _InvalidLoginDetails.Password);
+            
+            Assert.AreEqual(loginPage.Login_UserErrorPageElement.Text, "The credentials you entered are invalid. Please re-enter your username and password.");
         }
 
         [TestMethod]
@@ -84,12 +73,9 @@ namespace KidCheckTest
         {
             var loginPage = new LoginPageModel(driver, BaseUri);
             loginPage.Load()
-                /*.InitiateLogin()*/
-                .FillLoginDetail(_InvalidLoginDetails.UserName, _InvalidLoginDetails.Password)
-                .SubmitLogin();
-
-            string errorText = loginPage.Login_UserErrorPageElement.Text;
-            Assert.AreEqual(errorText, "The credentials you entered are invalid. Please re-enter your username and password.");
+                .InitiateLogin(_InvalidLoginDetails.UserName, _InvalidLoginDetails.Password);
+            
+            Assert.AreEqual(loginPage.Login_UserErrorPageElement.Text, "The credentials you entered are invalid. Please re-enter your username and password.");
         }
 
         [TestMethod]
@@ -97,81 +83,28 @@ namespace KidCheckTest
         {
             var loginPage = new LoginPageModel(driver, BaseUri);
             loginPage.Load()
-                /*.InitiateLogin()*/
-                .FillLoginDetail(_InvalidLoginDetails.UserName, _InvalidLoginDetails.Password)
-                .SubmitLogin();
-
-            string errorText = loginPage.Login_UserErrorPageElement.Text;
-            Assert.AreEqual(errorText, "The credentials you entered are invalid. Please re-enter your username and password.");
+                .InitiateLogin(_InvalidLoginDetails.UserName, _InvalidLoginDetails.Password);
+            
+            Assert.AreEqual(loginPage.Login_UserErrorPageElement.Text, "The credentials you entered are invalid. Please re-enter your username and password.");
         }
 
         [TestMethod]
         public void LockedLoginAccount()
         {
-            var loginPage = new LoginPageModel(driver, BaseUri);
-            var submit = loginPage.Load()
-                /*.InitiateLogin()*/;
+            var loginPage = new LoginPageModel(driver, BaseUri).Load();
+
             for (int i = 0; i < 5; i++)
             {
-                Thread.Sleep(1000);
-                submit.FillLoginDetail("tsstlogin@gmail.com", "cennes")
-                    .SubmitLogin();
+                Thread.Sleep(AppConstant.SleepTime * 2);
+                loginPage.InitiateLogin("tsstlogin@gmail.com", "cennes");
             }
-            Thread.Sleep(1000);
 
-            submit.FillLoginDetail("tsstlogin@gmail.com", "cennes")
-                .SubmitLogin();
-
-            string UserErrorText = submit.Login_UserErrorPageElement.Text;
-            Assert.AreEqual(UserErrorText, "The username you are attempting to use is temporarily disabled because of too many invalid login attempts. You can attempt another login in 11 minutes.\r\nYou can contact KidCheck support at 1-855-543-2432 to have this login unlocked.");
+            Thread.Sleep(AppConstant.SleepTime * 2);
+            loginPage.InitiateLogin("tsstlogin@gmail.com", "cennes");
+            
+            Assert.AreEqual(loginPage.Login_UserErrorPageElement.Text, "The username you are attempting to use is temporarily disabled because of too many invalid login attempts. You can attempt another login in 11 minutes.\r\nYou can contact KidCheck support at 1-855-543-2432 to have this login unlocked.");
         }
 
-        [TestMethod]
-        public void CreateNewKidCheckAccountWithEmailIdLogin()
-        {
-            var loginPage = new LoginPageModel(driver, BaseUri);
-            AccountHomePageModel homePage = loginPage.Load()
-                /*.InitiateLogin()*/
-                .ClickCreateNewKidCheckAccount()
-                .ClickNeverUsedKidCheck()
-                .FillNewKidCheckAccountDetailForEmailLogin(_signuopDetailsModel)
-                .Register()
-                .IAgree();
-
-            string homeElementText = homePage.HomeTabElement.Text;
-            Assert.AreEqual(homeElementText, "Home");
-        }
-
-        [TestMethod]
-        public void CreateNewKidCheckAccountWithUsernameLogin()
-        {
-            var loginPage = new LoginPageModel(driver, BaseUri);
-            AccountHomePageModel homePage = loginPage.Load()
-                /*.InitiateLogin()*/
-                .ClickCreateNewKidCheckAccount()
-                .ClickNeverUsedKidCheck()
-                .FillNewKidCheckAccountDetailForUsernameLogin(_signuopDetailsModel)
-                .Register()
-                .IAgree();
-
-            string homeElementText = homePage.HomeTabElement.Text;
-            Assert.AreEqual(homeElementText, "Home");
-        }
-
-        [TestMethod]
-        public void CreateNewKidCheckAccountWithrefOrg()
-        {
-            var loginPage = new LoginPageModel(driver, BaseUri);
-            AccountHomePageModel homePage = loginPage.Load()
-                /*.InitiateLogin()*/
-                .ClickCreateNewKidCheckAccount()
-                .ClickNeverUsedKidCheck()
-                .FillNewKidCheckAccountDetailRefOrg(_signuopDetailsModel)
-                .Register()
-                .IAgree();
-
-            string homeElementText = homePage.HomeTabElement.Text;
-            Assert.AreEqual(homeElementText, "Home");
-        }
+        
     }
 }

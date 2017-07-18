@@ -12,7 +12,7 @@ using KidCheckTest.Helper;
 namespace KidCheckTest.TestFile
 {
     [TestClass]
-    public class CheckinTest : UiTestBase
+    public class CheckinTest : UITestBase
     {
         IWebDriver driver = null;
         private LoginDetailsModel _adminLoginDetails;
@@ -46,17 +46,19 @@ namespace KidCheckTest.TestFile
         {
             var loginPage = new LoginPageModel(driver, BaseUri);
 
-            CheckinPageModel addNewTemplate = loginPage.Load()
-                /*.InitiateLogin()*/
-                .FillLoginDetail(_adminLoginDetails.UserName, _adminLoginDetails.Password)
-                .SubmitLogin()
-                .ClickCheckin();
+            loginPage.Load();
+            TemplatePageModel templatePage = loginPage.InitiateLogin(_adminLoginDetails.UserName, _adminLoginDetails.Password)
+                .ClickCheckinTab()
+                .ClickTemplatesTab();
+
             int iRowCount = driver.FindElements(By.XPath("//*[@id='ctl00_ContentMain_rgList_ctl00']/tbody/tr")).Count;
-            addNewTemplate.ClickAddNewTemplate()
-                .FillNewTemplateDetails(_addNewTemplate)
-                .SubmitNewTemplate()
-                .DragDropLocationTemplate()
-                .SaveNewTemplateLocation();
+
+            templatePage.ClickAddNewTemplate();
+            templatePage.FillNewTemplateDetails(_addNewTemplate);
+            templatePage.SubmitNewTemplate();
+            templatePage.DragDropLocationTemplate();
+            templatePage.SaveNewTemplateLocation();
+
             int iRowCountAfterInsert = driver.FindElements(By.XPath("//*[@id='ctl00_ContentMain_rgList_ctl00']/tbody/tr")).Count;
 
             bool isTemplateAdded = false;
@@ -69,28 +71,5 @@ namespace KidCheckTest.TestFile
         }
 
         #endregion
-
-        #region Utilities
-
-        [TestMethod]
-        public void AccountCreationViaRegistrationAssistant()
-        {
-            var loginPage = new LoginPageModel(driver, BaseUri);
-
-            CheckinPageModel test = loginPage.Load()
-                .FillLoginDetail(_adminLoginDetails.UserName, _adminLoginDetails.Password)
-                .SubmitLogin()
-                .ClickCheckin()
-                .ClickUtitlities()
-                .ClickRegistrationAssistantStart()
-                .FillRegistrationBasicInfoForNewUser(_newUserDetails, true)
-                .ClickRegNext()
-                .FillRegistrationInfoForNewUser()
-                .ClickPrimaryGuardianNext();
-        }
-
-        #endregion
-
-
     }
 }

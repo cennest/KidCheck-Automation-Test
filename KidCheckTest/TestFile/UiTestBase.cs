@@ -11,12 +11,12 @@ using System.Drawing;
 
 namespace KidCheckTest.TestFile
 {
-    public class UiTestBase
+    public class UITestBase
     {
         protected Uri BaseUri;
         static string driverPath = AppDomain.CurrentDomain.BaseDirectory;  
 
-        public UiTestBase()
+        public UITestBase()
         {
             BaseUri = GetBaseUri();
         }
@@ -26,7 +26,6 @@ namespace KidCheckTest.TestFile
             IWebDriver driver = InitializeDriver("CR");
             try
             {
-                //driver.Manage().Window.Size = new Size(700, 700);
                 driver.Manage().Window.Size = new Size(1500, 1000);
                 driver.Manage().Window.Position = new Point(0, 0);
                 driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(50);
