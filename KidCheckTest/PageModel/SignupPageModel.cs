@@ -11,7 +11,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace KidCheckTest.PageModel
 {
-    class SignupPageModel : HomePageModel
+    class SignupPageModel : BasePageModel
     {
 
         #region Page Setup

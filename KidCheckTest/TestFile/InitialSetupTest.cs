@@ -10,8 +10,7 @@ namespace KidCheckTest.TestFile
     public class InitialSetupTest : UiTestBase
     {
         IWebDriver driver = null;
-        private LoginDetailsModel _adminLoginDetails;
-        private LoginDetailsModel _kidCheckAdminLoginDetails;
+        private LoginDetailsModel _loginDetails;
         private SignupDetailsModel _signupDetails;
         private ChildcareOrganizationDetailsModel _childcareOrganizationDetailsModel;
 
@@ -19,8 +18,7 @@ namespace KidCheckTest.TestFile
         public void Setup()
         {
             driver = GetDriver();
-            _adminLoginDetails = new LoginDetailsModel(UserRole.Administrator);
-            _kidCheckAdminLoginDetails = new LoginDetailsModel(UserRole.KidCheckAdmin);
+            _loginDetails = new LoginDetailsModel(UserRole.Administrator);
             _signupDetails = new SignupDetailsModel();
             _childcareOrganizationDetailsModel = new ChildcareOrganizationDetailsModel();
         }
@@ -37,18 +35,14 @@ namespace KidCheckTest.TestFile
         [TestMethod]
         public void CreateNewAccountWithCustomerSetupWitEmail()
         {
-            var signupPage = new SignupPageModel(driver, BaseUri);
             driver.Navigate()
                 .GoToUrl(Helper.AppConstant.SignUpURL);
 
-            SignupPageModel siginin = signupPage
-                /*.Load()
-                 * .InitiateSignUp()
-                 * .InitiateKidCheckSignUP()*/
-                .WelcomePage()
-                 .FillNewAccountDetailsWithEmail(_signupDetails);
+            var signupPage = new SignupPageModel(driver, BaseUri);
 
-            siginin.ContinueToStep2()
+            SignupPageModel siginin = signupPage
+                .WelcomePage()
+                .FillNewAccountDetailsWithEmail(_signupDetails).ContinueToStep2()
                 .ContinueUsingSameLogin()
                 .FillChildCareOrgDetails(_childcareOrganizationDetailsModel)
                 .ContinueToStep3()
@@ -56,32 +50,30 @@ namespace KidCheckTest.TestFile
                 .ContinueToStep4()
                 .Continue();
 
-            driver.Navigate().GoToUrl(Helper.AppConstant.SignInURL);
+            driver.Navigate()
+                .GoToUrl(Helper.AppConstant.SignInURL);
 
             var loginPage = new LoginPageModel(driver, BaseUri);
             HomePageModel homePage = loginPage
-                /*.InitiateLogin()*/
-                .FillLoginDetail(_signupDetails.Account_EmailID, _signupDetails.Account_Password)
-                .SubmitLogin()
+                .InitiateLogin(_signupDetails.Account_EmailID, _signupDetails.Account_Password)
                 .ClickIAgree();
 
-            string homeElementText = homePage.HomeTabElement.Text;
-            Assert.AreEqual(homeElementText, "Home");
+            Assert.AreEqual(homePage.HomeTabElement.Text, "Home");
         }
 
         [TestMethod]
         public void CreateNewAccountWithCustomerSetupWitUser()
         {
-            var signupPage = new SignupPageModel(driver, BaseUri);
             driver.Navigate()
                 .GoToUrl(Helper.AppConstant.SignUpURL);
 
+            var signupPage = new SignupPageModel(driver, BaseUri);
+
             SignupPageModel siginin = signupPage
                 .WelcomePage()
-                 .FillNewAccountDetailsWithUser(_signupDetails);
-
-            siginin.ContinueToStep2().
-                ContinueUsingSameLogin()
+                .FillNewAccountDetailsWithUser(_signupDetails)
+                .ContinueToStep2()
+                .ContinueUsingSameLogin()
                 .FillChildCareOrgDetails(_childcareOrganizationDetailsModel)
                 .ContinueToStep3()
                 .KidcheckProductSelection()
@@ -94,12 +86,10 @@ namespace KidCheckTest.TestFile
             var loginPage = new LoginPageModel(driver, BaseUri);
 
             HomePageModel homePage = loginPage
-                .FillLoginDetail(_signupDetails.Account_UserName, _signupDetails.Account_Password)
-                .SubmitLogin()
+                .InitiateLogin(_signupDetails.Account_UserName, _signupDetails.Account_Password)
                 .ClickIAgree();
 
-            string homeElementText = homePage.HomeTabElement.Text;
-            Assert.AreEqual(homeElementText, "Home");
+            Assert.AreEqual(homePage.HomeTabElement.Text, "Home");
         }
 
         [TestMethod]
@@ -108,11 +98,9 @@ namespace KidCheckTest.TestFile
             var loginPage = new LoginPageModel(driver, BaseUri);
 
             HomePageModel homePage = loginPage.Load()
-                .FillLoginDetail(_adminLoginDetails.UserName, _adminLoginDetails.Password)
-                .SubmitLogin();
+                .InitiateLogin(_loginDetails.UserName, _loginDetails.Password);
 
-            string homeElementText = homePage.HomeTabElement.Text;
-            Assert.AreEqual(homeElementText, "Home");
+            Assert.AreEqual(homePage.HomeTabElement.Text, "Home");
         }
     }
 }

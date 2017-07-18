@@ -10,7 +10,7 @@ using KidCheckTest.Helper;
 
 namespace KidCheckTest.PageModel
 {
-    class LoginPageModel : HomePageModel
+    class LoginPageModel : BasePageModel
     {
 
         #region Page Setup
@@ -47,7 +47,7 @@ namespace KidCheckTest.PageModel
             get { return ById("ctl00_ContentMain_pbLogin_i0_i0_btnLogin_btnRadButton"); }
         }
 
-        public IWebElement CreateNewKidcheckAccountElement
+        public IWebElement CreateNewAccountElement
         {
             get { return ByXPath("//*[@id='rpiRegisterPanel']/span/span[2]"); }
         }
@@ -131,20 +131,7 @@ namespace KidCheckTest.PageModel
 
         #region Methods
 
-        public LoginPageModel FillLoginForm(LoginDetailsModel userDetail)
-        {
-            ActionHelper.WaitUntil(Driver, UserNameElement);
-
-            UserNameElement.Clear();
-            PasswordElement.Clear();
-            UserNameElement.SendKeys(userDetail.UserName);
-            PasswordElement.SendKeys(userDetail.Password);
-
-            Thread.Sleep(AppConstant.SleepTime);
-            return new LoginPageModel(Driver, BaseUri);
-        }
-
-        public LoginPageModel FillLoginDetail(string username, string password)
+        private LoginPageModel FillLoginDetail(string username, string password)
         {
             ActionHelper.WaitUntil(Driver, UserNameElement);
 
@@ -157,16 +144,37 @@ namespace KidCheckTest.PageModel
             return new LoginPageModel(Driver, BaseUri);
         }
 
-        public HomePageModel SubmitLogin()
+        private void FillUsername(string userName)
+        {
+            Login_IDontHaveEmailidElement.Click();
+
+            Thread.Sleep(AppConstant.SleepTime * 2);
+            Login_UsernameElement.SendKeys(userName);
+        }
+
+        private void FillRefOrganization(string orgName)
+        {
+            Account_RefOrgValueElement.SendKeys(orgName);
+
+            Thread.Sleep(2000);
+            Account_RefCompanySelectElement.Click();
+        }
+
+        private HomePageModel SubmitLogin()
         {
             LoginElement.Click();
             Thread.Sleep(AppConstant.SleepTime * 2);
             return new HomePageModel(Driver, BaseUri);
         }
 
-        public LoginPageModel ClickCreateNewKidCheckAccount()
+        public HomePageModel InitiateLogin(string username, string password)
         {
-            CreateNewKidcheckAccountElement.Click();
+            return FillLoginDetail(username, password).SubmitLogin();
+        }        
+
+        public LoginPageModel ClickCreateNewAccount()
+        {
+            CreateNewAccountElement.Click();
 
             Thread.Sleep(AppConstant.SleepTime * 2);
             return new LoginPageModel(Driver, BaseUri);
@@ -180,32 +188,17 @@ namespace KidCheckTest.PageModel
             return new LoginPageModel(Driver, BaseUri);
         }
 
-        public LoginPageModel FillNewKidCheckAccountDetailForUsernameLogin(SignupDetailsModel _signuopDetailsModel)
-        {
-            Account_FirstNameElement.SendKeys(_signuopDetailsModel.Account_FirstName);
-            Account_LastNameElement.SendKeys(_signuopDetailsModel.Account_Lastname);
-            Login_IDontHaveEmailidElement.Click();
-
-            Thread.Sleep(AppConstant.SleepTime * 2);
-            Login_UsernameElement.SendKeys(_signuopDetailsModel.Account_UserName);
-            Account_HomePhoneElement.SendKeys(_signuopDetailsModel.Account_PhoneNumber);
-            Account_CellPhoneElement.SendKeys(_signuopDetailsModel.Account_MobileNumber);
-            Account_CellPhoneCarrierElement.Click();
-
-            Thread.Sleep(AppConstant.SleepTime * 2);
-            Account_CellPhoneCarrierSelectElement.Click();
-
-            Thread.Sleep(AppConstant.SleepTime * 2);
-            Account_PasswordElement.SendKeys(_signuopDetailsModel.Account_Password);
-            Account_ConfirmPasswordElement.SendKeys(_signuopDetailsModel.Account_ConfirmPassword);
-            return new LoginPageModel(Driver, BaseUri);
-        }
-
-        public LoginPageModel FillNewKidCheckAccountDetailForEmailLogin(SignupDetailsModel _signuopDetailsModel)
+        public LoginPageModel FillNewKidCheckAccountDetails(SignupDetailsModel _signuopDetailsModel, bool fillUsername, bool fillRefOrg)
         {
             Account_FirstNameElement.SendKeys(_signuopDetailsModel.Account_FirstName);
             Account_LastNameElement.SendKeys(_signuopDetailsModel.Account_Lastname);
             Account_EmailIDElement.SendKeys(_signuopDetailsModel.Account_EmailID);
+
+            if (fillUsername)
+            {
+                FillUsername(_signuopDetailsModel.Account_UserName);
+            }
+
             Account_HomePhoneElement.SendKeys(_signuopDetailsModel.Account_PhoneNumber);
             Account_CellPhoneElement.SendKeys(_signuopDetailsModel.Account_MobileNumber);
             Account_CellPhoneCarrierElement.Click();
@@ -216,31 +209,12 @@ namespace KidCheckTest.PageModel
             Thread.Sleep(AppConstant.SleepTime * 2);
             Account_PasswordElement.SendKeys(_signuopDetailsModel.Account_Password);
             Account_ConfirmPasswordElement.SendKeys(_signuopDetailsModel.Account_ConfirmPassword);
-            return new LoginPageModel(Driver, BaseUri);
-        }
 
-        public LoginPageModel FillNewKidCheckAccountDetailRefOrg(SignupDetailsModel _signuopDetailsModel)
-        {
-            Account_FirstNameElement.SendKeys(_signuopDetailsModel.Account_FirstName);
-            Account_LastNameElement.SendKeys(_signuopDetailsModel.Account_Lastname);
-            Account_EmailIDElement.SendKeys(_signuopDetailsModel.Account_EmailID);
-            Account_HomePhoneElement.SendKeys(_signuopDetailsModel.Account_PhoneNumber);
-            Account_CellPhoneElement.SendKeys(_signuopDetailsModel.Account_MobileNumber);
-            Account_CellPhoneCarrierElement.Click();
+            if (fillRefOrg)
+            {
+                FillRefOrganization("cenn");
+            }
 
-            Thread.Sleep(AppConstant.SleepTime * 2);
-            Account_CellPhoneCarrierSelectElement.Click();
-
-            Thread.Sleep(AppConstant.SleepTime * 2);
-            Account_PasswordElement.SendKeys(_signuopDetailsModel.Account_Password);
-            Account_ConfirmPasswordElement.SendKeys(_signuopDetailsModel.Account_ConfirmPassword);
-            Account_RefOrgValueElement.SendKeys("cenn");
-
-            Thread.Sleep(2000);
-            // Account_RefCompanyElement.Click();
-            // Thread.Sleep(AppConstant.SleepTime * 4);
-
-            Account_RefCompanySelectElement.Click();
             return new LoginPageModel(Driver, BaseUri);
         }
 

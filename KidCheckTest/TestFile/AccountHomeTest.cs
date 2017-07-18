@@ -10,19 +10,15 @@ namespace KidCheckTest.TestFile
     public class AccountHomeTest : UiTestBase
     {
         IWebDriver driver = null;
-        private LoginDetailsModel _adminLoginDetails;
-        private LoginDetailsModel _kidCheckAdminLoginDetails;
+        private LoginDetailsModel _loginDetails;
         private AddNewChild _addNewChild;
-        SignupDetailsModel _newUserDetails;
 
         [TestInitialize]
         public void Setup()
         {
             driver = GetDriver();
-            _adminLoginDetails = new LoginDetailsModel(UserRole.Administrator);
-            _kidCheckAdminLoginDetails = new LoginDetailsModel(UserRole.KidCheckAdmin);
+            _loginDetails = new LoginDetailsModel(UserRole.Administrator);
             _addNewChild = new AddNewChild();
-            _newUserDetails = new SignupDetailsModel();
         }
 
         [TestCleanup]
@@ -40,16 +36,14 @@ namespace KidCheckTest.TestFile
             var loginPage = new LoginPageModel(driver, BaseUri);
 
             MyAccountPageModel addNewKid = loginPage.Load()
-                /*.InitiateLogin()*/
-                .FillLoginDetail(_adminLoginDetails.UserName, _adminLoginDetails.Password)
-                .SubmitLogin()
+                .InitiateLogin(_loginDetails.UserName, _loginDetails.Password)
                 .ClickMyAccountTab()
                 .ClickKidsTab()
                 .ClickAddNewKidLink();
 
             IList<IWebElement> row = driver.FindElements(By.XPath("//*[@id='ctl00_ContentMain_dgKids']" + " / tbody/tr[*]"));
 
-            int rowCount = row.Count;
+            int initialRowCount = row.Count;
 
             driver.SwitchTo()
                 .Frame(0);
@@ -58,33 +52,14 @@ namespace KidCheckTest.TestFile
                 .SubmitNewKid();
 
             IList<IWebElement> rowAfterInsert = driver.FindElements(By.XPath("//*[@id='ctl00_ContentMain_dgKids']" + " / tbody/tr[*]"));
-
-            int rowCountAterInsert = rowAfterInsert.Count;
-
+            
             bool isKidAdded = false;
-            if (rowCount < rowCountAterInsert)
+            if (initialRowCount < rowAfterInsert.Count)
             {
                 isKidAdded = true;
             }
 
             Assert.IsTrue(isKidAdded);
-        }
-
-        [TestMethod]
-        public void AccountCreationViaRegistrationAssistant()
-        {
-            var loginPage = new LoginPageModel(driver, BaseUri);
-
-            PreCheckinPageModel test = loginPage.Load()
-                .FillLoginDetail(_adminLoginDetails.UserName, _adminLoginDetails.Password)
-                .SubmitLogin()
-                .ClickCheckinTab()
-                .ClickUtitlitiesTab()
-                .ClickRegistrationAssistantStartButton()
-                .FillRegistrationBasicInfoForNewUser(_newUserDetails, false)
-                .ClickRegNext()
-                .FillRegistrationInfoForNewUser()
-                .ClickPrimaryGuardianNext();
         }
 
     }

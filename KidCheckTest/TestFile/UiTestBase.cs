@@ -26,7 +26,6 @@ namespace KidCheckTest.TestFile
             IWebDriver driver = InitializeDriver("CR");
             try
             {
-                //driver.Manage().Window.Size = new Size(700, 700);
                 driver.Manage().Window.Size = new Size(1500, 1000);
                 driver.Manage().Window.Position = new Point(0, 0);
                 driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(50);
