@@ -13,7 +13,6 @@ namespace KidCheckTest.TestFile
         private LoginDetailsModel _adminLoginDetails;
         private LoginDetailsModel _kidCheckAdminLoginDetails;
         private AddNewChild _addNewChild;
-        SignupDetailsModel _newUserDetails;
 
         [TestInitialize]
         public void Setup()
@@ -22,7 +21,6 @@ namespace KidCheckTest.TestFile
             _adminLoginDetails = new LoginDetailsModel(UserRole.Administrator);
             _kidCheckAdminLoginDetails = new LoginDetailsModel(UserRole.KidCheckAdmin);
             _addNewChild = new AddNewChild();
-            _newUserDetails = new SignupDetailsModel();
         }
 
         [TestCleanup]
@@ -69,23 +67,5 @@ namespace KidCheckTest.TestFile
 
             Assert.IsTrue(isKidAdded);
         }
-
-        [TestMethod]
-        public void AccountCreationViaRegistrationAssistant()
-        {
-            var loginPage = new LoginPageModel(driver, BaseUri);
-
-            AccountHomePageModel test = loginPage.Load()
-                .FillLoginDetail(_adminLoginDetails.UserName, _adminLoginDetails.Password)
-                .SubmitLogin()
-                .ClickCheckin()
-                .ClickUtitlities()
-                .ClickRegistrationAssistantStart()
-                .FillRegistrationBasicInfoForNewUser(_newUserDetails, true)
-                .ClickRegNext()
-                .FillRegistrationInfoForNewUser()
-                .ClickPrimaryGuardianNext();
-        }
-
     }
 }
