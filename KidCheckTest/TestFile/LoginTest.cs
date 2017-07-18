@@ -103,8 +103,6 @@ namespace KidCheckTest
             loginPage.InitiateLogin("tsstlogin@gmail.com", "cennes");
             
             Assert.AreEqual(loginPage.Login_UserErrorPageElement.Text, "The username you are attempting to use is temporarily disabled because of too many invalid login attempts. You can attempt another login in 11 minutes.\r\nYou can contact KidCheck support at 1-855-543-2432 to have this login unlocked.");
-        }
-
-        
+        }        
     }
 }
