@@ -23,11 +23,11 @@ namespace KidCheckTest.Helper
             wait.Until(driver => element);
         }
 
-        public static void DragDrop(IWebDriver driver, IWebElement element, IWebElement toElement, int offsetX, int offsetY)
+        public static void DragDrop(IWebDriver driver, IWebElement element, IWebElement toElement)
         {
             Actions action = new Actions(driver);
-            IAction dragdrop = action.ClickAndHold(element).MoveToElement(toElement, offsetX, offsetY).Release().Build();
-            dragdrop.Perform();
+            action.DragAndDrop(element, toElement);
+            action.Build().Perform();
         }
 
         public static IWebElement FindTableElement(IWebDriver driver, IWebElement tableElement, string textToBeMatch, string tagType)

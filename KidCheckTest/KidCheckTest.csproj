@@ -62,6 +62,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="DetailModel\AddNewChild.cs" />
+    <Compile Include="DetailModel\AddNewTemplate.cs" />
     <Compile Include="DetailModel\ChildcareOrganizationDetailsModel.cs" />
     <Compile Include="DetailModel\LoginDetailsModel.cs" />
     <Compile Include="DetailModel\NewKidCheckAccount.cs" />
@@ -69,15 +70,17 @@
     <Compile Include="DetailModel\UserRole.cs" />
     <Compile Include="Helper\ActionHelper.cs" />
     <Compile Include="Helper\AppConstant.cs" />
-    <Compile Include="PageModel\CheckinPageModel.cs" />
     <Compile Include="PageModel\MyAccountPageModel.cs" />
     <Compile Include="PageModel\BasePageModel.cs" />
+    <Compile Include="PageModel\CheckinPageModel.cs" />
     <Compile Include="PageModel\HomePageModel.cs" />
     <Compile Include="PageModel\LoginPageModel.cs" />
     <Compile Include="PageModel\PreCheckinPageModel.cs" />
     <Compile Include="PageModel\SignupPageModel.cs" />
+    <Compile Include="PageModel\TemplatePageModel.cs" />
     <Compile Include="PageModel\UtilitiesPageModel.cs" />
     <Compile Include="TestFile\AccountHomeTest.cs" />
+    <Compile Include="TestFile\CheckinTest.cs" />
     <Compile Include="TestFile\InitialSetupTest.cs" />
     <Compile Include="TestFile\LoginTest.cs" />
     <Compile Include="TestFile\UITestBase.cs" />

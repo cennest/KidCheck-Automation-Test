@@ -173,11 +173,6 @@ namespace KidCheckTest.PageModel
         {
             get { return ById("CheckinTab"); }
         }
-        public IWebElement UtilitiesTabElement
-        {
-            get { return ById("AdminConsoleTab"); }
-        }
-
 
         #endregion
 
